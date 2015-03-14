@@ -17,7 +17,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
                         <testResultsTimestamp>false</testResultsTimestamp>
                         <reportDir>target/jmeter-reports</reportDir>
                         <TestFileInclude>
-                        	<JmeterTestFiles>test.jmx</JmeterTestFiles>
+                        	<JmeterTestFiles>*.jmx</JmeterTestFiles>
                         </TestFileInclude>
                     </configuration>
                     <executions>
