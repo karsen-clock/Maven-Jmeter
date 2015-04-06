@@ -45,9 +45,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <configuration>
          <transformationSets>
              <transformationSet>
-                  <dir>${project.build.directory}/jmeter-reports</dir>
+                  <dir>${project.build.directory}/reports</dir>
                   <stylesheet>src/test/resources/jmeter-results-detail-report_21.xsl</stylesheet>
-                  <outputDir>${project.build.directory}/site/jmeter-results</outputDir>
+                  <outputDir>${project.build.directory}/reports</outputDir>
                   <fileMappers>
                       <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
                          <targetExtension>html</targetExtension>
