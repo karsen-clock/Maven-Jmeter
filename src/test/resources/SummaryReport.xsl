@@ -77,6 +77,7 @@
 		<tr>
 			<td align="left"></td>
 			<td align="right">Designed for use with <a href="http://jmeter.apache.org/">JMeter</a> and <a href="http://ant.apache.org">Ant</a>.</td>
+			<td align="left">Link to Details Test Report <a href="DetailsReport.html">Details Test Report</a>.</td>
 		</tr>
 	</table>
 	<hr size="1" />
@@ -277,6 +278,7 @@
 		</xsl:for-each>
 	</table>
 </xsl:template>
+
 
 <xsl:template name="detail">
 	<xsl:variable name="allFailureCount" select="count(/testResults/sampleResult[attribute::success='false'])" />
