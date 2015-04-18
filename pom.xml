@@ -22,7 +22,7 @@
                     <executions>
                         <execution>
                             <id>jmeter-tests</id>
-                            <phase>verify</phase>
+                            <phase>integration-test</phase>
                             <goals>
                                 <goal>jmeter</goal>
                             </goals>
@@ -38,10 +38,10 @@
   <version>1.0.4</version>
   <executions>
     <execution>
-    <phase>install</phase>
       <goals>
         <goal>analyze</goal>
       </goals>
+          <phase>post-integration-test</phase>
       <configuration>
         <!--
         An AntPath-Style pattern matching a JMeter XML result file to analyze. Must be a fully qualified path.
@@ -50,7 +50,7 @@
         Default: not set.
         Required.
         -->
-        <source>${project.build.directory}/jmeter/results/*.xml</source>
+        <source>${project.build.directory}\jmeter\results\test.xml</source>
 
         <!--
         directory where to store analysis result files.
@@ -90,33 +90,34 @@
 
         Default: not set.
         -->
-        <requestGroups>
-          <pages>/page/**</pages>
-          <binaries>/binary/**</binaries>
+        
+       <!--  <requestGroups> --> 
+         <!--  <pages>/page/**</pages> --> 
+         <!-- <binaries>/binary/**</binaries>--> 
           <!-- Optional --> -->
           <!--  <checkResult> -->
             <!-- As above -->
           <!-- </checkResult> -->
           
-        </requestGroups>
-        <requestGroups>
-          <requestGroup>
-            <name>pages</name>
-            <pattern>/page/**</pattern>
+        <!--</requestGroups>--> 
+        <!--<requestGroups>--> 
+          <!--<requestGroup>--> 
+            <!--<name>pages</name>--> 
+            <!--<pattern>/page/**</pattern>--> 
           <!-- Optional --> -->
           <!--  <checkResult> -->
             <!-- As above -->
           <!-- </checkResult> -->
-          </requestGroup>
-          <requestGroup>
-            <name>binaries</name>
-            <pattern>/binary/**</pattern>
+         <!-- </requestGroup>--> 
+         <!-- <requestGroup>--> 
+            <!--<name>binaries</name>--> 
+            <!--<pattern>/binary/**</pattern>--> 
           <!-- Optional --> -->
           <!--  <checkResult> -->
             <!-- As above -->
           <!-- </checkResult> -->
-          </requestGroup>
-        </requestGroups>
+         <!-- </requestGroup>--> 
+        <!-- </requestGroups>--> 
 
         <!--
         If set to true, additional files "<category>-sizes.csv" and "<category>-durations.csv" will be stored.
@@ -201,19 +202,25 @@
 
         Default: not set.
         -->
+        <!-- 
         <remoteResources>
           <property>
-            <name>http://yourhost/path?from=_FROM_&amp;to=_TO_</name>
-            <value>my_resource.txt</value>
+            <name>http://localhost/path?from=_FROM_&amp;to=_TO_</name>
+            <value>my_resource.html</value>
           </property>
         </remoteResources>
-
+         -->
+         
         <!--
         Specify custom date format for resources not supporting ISO8601.
 
         Default IOS8601
         -->
+        
+        <!--  
         <remoteResourcesFromUntilDateFormat>HH:mm_yyyyMMdd</remoteResourcesFromUntilDateFormat>
+        -->
+        
 
         <!--
         List of writers that handle all output of the plugin.
