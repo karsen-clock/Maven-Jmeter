@@ -77,7 +77,9 @@
 		<tr>
 			<td align="left"></td>
 			<td align="right">Designed for use with <a href="http://jmeter.apache.org/">JMeter</a> and <a href="http://ant.apache.org">Ant</a>.</td>
-			<td align="left">Link to Details Test Report <a href="DetailsReport.html">Details Test Report</a>.</td>
+		</tr>
+		<tr>
+		   <td align="left">Link to Details Test Report <a href="DetailsReport.html">Details Test Report</a>.</td>
 		</tr>
 	</table>
 	<hr size="1" />
