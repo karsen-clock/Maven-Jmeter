@@ -18,7 +18,10 @@
                                 <goal>jmeter</goal>
                             </goals>
                     <configuration>
-                      <testFilesIncluded>
+                       <resultsFileFormat>xml</resultsFileFormat>
+                        <ignoreResultFailures>true</ignoreResultFailures>
+                        <testResultsTimestamp>true</testResultsTimestamp>
+                        <testFilesIncluded>
                            <jMeterTestFile>*.jmx</jMeterTestFile>
                       </testFilesIncluded>
                       </configuration>
@@ -45,7 +48,7 @@
         Default: not set.
         Required.
         -->
-        <source>${project.build.directory}\jmeter\results\Testing.xml</source>
+        <source>${project.build.directory}\jmeter\results\${pom.date}.xml</source>
 
         <!--
         directory where to store analysis result files.
@@ -188,7 +191,7 @@
 
         Default: not set.
         -->
-        <templateDirectory>${project.basedir}/src/main/resources/</templateDirectory>
+        <!--  <templateDirectory>${project.basedir}/src/main/resources/</templateDirectory> -->
 
         <!--
         Mapping from resource URL to file name. Every resource will be downloaded and stored in 'targetDirectory'
@@ -249,7 +252,76 @@
     </execution>
   </executions>
 </plugin>
+	
+	
+<plugin>
+		<groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+            <phase>install</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <transformationSets>
+            <transformationSet>
+              <dir>${project.build.directory}\jmeter\results</dir>
+              <stylesheet>${basedir}\src\test\resources\SummaryReport.xsl</stylesheet>
+              <outputDir>${project.build.directory}\results\summary</outputDir>
+              <fileMappers>
+                      <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                         <targetExtension>html</targetExtension>
+                      </fileMapper>
+                  </fileMappers>
+            </transformationSet>
+             <transformationSet>
+              <dir>${project.build.directory}\jmeter\results</dir>
+			  <stylesheet>${basedir}\src\test\resources\DetailsReport.xsl</stylesheet>
+              <outputDir>${project.build.directory}\results\details</outputDir>
+              <fileMappers>
+                      <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                         <targetExtension>html</targetExtension>
+                      </fileMapper>
+                  </fileMappers>
+            </transformationSet>
+          </transformationSets>
+        </configuration>
+</plugin>	
 	</plugins>
-</build>
+    <pluginManagement>
+    	<plugins>
+    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+    		<plugin>
+    			<groupId>org.eclipse.m2e</groupId>
+    			<artifactId>lifecycle-mapping</artifactId>
+    			<version>1.0.0</version>
+    			<configuration>
+    				<lifecycleMappingMetadata>
+    					<pluginExecutions>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>org.codehaus.mojo</groupId>
+    								<artifactId>
+    									xml-maven-plugin
+    								</artifactId>
+    								<versionRange>[1.0,)</versionRange>
+    								<goals>
+    									<goal>transform</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    					</pluginExecutions>
+    				</lifecycleMappingMetadata>
+    			</configuration>
+    		</plugin>
+    	</plugins>
+    </pluginManagement>
+  </build>
 
 </project>
