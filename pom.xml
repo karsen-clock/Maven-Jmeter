@@ -48,7 +48,7 @@
         Default: not set.
         Required.
         -->
-        <source>${project.build.directory}\jmeter\results\${pom.date}.xml</source>
+        <source>${project.build.directory}\jmeter\results\Testing.xml</source>
 
         <!--
         directory where to store analysis result files.
