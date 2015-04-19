@@ -4,6 +4,14 @@
   <artifactId>maven.jmeter</artifactId>
   <version>0.0.3-SNAPSHOT</version>
   
+  <dependencies>
+  <dependency>
+  	  <groupId>Ctrip</groupId>
+  	  <artifactId>CtripAutomation</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  </dependencies>
+  
   <build>
     <plugins>
    <plugin>
