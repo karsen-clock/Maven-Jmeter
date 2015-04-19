@@ -127,7 +127,7 @@ soap:encodingStyle=&quot;http://www.w3.org/2001/12/soap-encoding&quot;&gt;
               <bytes>true</bytes>
             </value>
           </objProp>
-          <stringProp name="filename">E:\GitHubLocal\Maven-Jmeter\target\jmeter\results\Testing.xml</stringProp>
+          <stringProp name="filename">..\results\Testing.xml</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
