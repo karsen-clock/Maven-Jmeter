@@ -1,0 +1,2 @@
+TCNo.,TestPoint,Execute,Dependent,PreCondition,appKey,appSecurity,JourneyNo,ErrorCode,Message,Success,SQL,checkField,checkValueParameter,request,responseCode,responseMessage,regularExpress
+TC0001,正常请求,Y,N,,obk_meadow,obk_meadow,123456,0,调用成功。,true,select * from FltOrderDB..P_Flt_FundProcess a where a.journeyid= '${JourneyNo}' and orderid = '1209939880',OrderID=1209939880;,,"{""appKey"":""${appKey}"",""appSecurity"":""${appSecurity}""}",,,
