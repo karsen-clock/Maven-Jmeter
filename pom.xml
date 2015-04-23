@@ -207,7 +207,9 @@
         Templates must be stored in one of the following three subfolders of the templateDirectory:
 
         csv, html, text
-
+		
+		comments 
+		
         The entry template must be called "main.ftl".
 
         For example,
