@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="2.4" jmeter="2.12-SNAPSHOT.20140707">
+<jmeterTestPlan version="1.2" properties="2.7" jmeter="2.12 r1636949">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="测试计划" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -40,10 +40,22 @@
               <stringProp name="Argument.desc">查询类/修改类</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
-            <elementProp name="TestDataFileName" elementType="Argument">
-              <stringProp name="Argument.name">TestDataFileName</stringProp>
-              <stringProp name="Argument.value">获取订单信息(按订单返回数据).csv</stringProp>
-              <stringProp name="Argument.desc">测试数据文件</stringProp>
+            <elementProp name="FAT" elementType="Argument">
+              <stringProp name="Argument.name">FAT</stringProp>
+              <stringProp name="Argument.value">ct.fat4.qa.nt.ctripcorp.com//switchapi</stringProp>
+              <stringProp name="Argument.desc">测试环境host地址</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="UAT" elementType="Argument">
+              <stringProp name="Argument.name">UAT</stringProp>
+              <stringProp name="Argument.value">ct.uat.qa.nt.ctripcorp.com//switchapi</stringProp>
+              <stringProp name="Argument.desc">集成测试环境</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PRO" elementType="Argument">
+              <stringProp name="Argument.name">PRO</stringProp>
+              <stringProp name="Argument.value">ct.pro.qa.nt.ctripcorp.com//switchapi</stringProp>
+              <stringProp name="Argument.desc">生产环境</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="TestName" elementType="Argument">
@@ -52,51 +64,62 @@
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">测试脚本名称</stringProp>
             </elementProp>
-            <elementProp name="Host" elementType="Argument">
-              <stringProp name="Argument.name">Host</stringProp>
-              <stringProp name="Argument.value">ct.fat4.qa.nt.ctripcorp.com//switchapi</stringProp>
-              <stringProp name="Argument.desc">host地址</stringProp>
+            <elementProp name="TestDataFileName" elementType="Argument">
+              <stringProp name="Argument.name">TestDataFileName</stringProp>
+              <stringProp name="Argument.value">获取订单信息(按订单返回数据).csv</stringProp>
+              <stringProp name="Argument.desc">测试数据文件</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
-            <elementProp name="DBEnvironment" elementType="Argument">
-              <stringProp name="Argument.name">DBEnvironment</stringProp>
+            <elementProp name="Environment" elementType="Argument">
+              <stringProp name="Argument.name">Environment</stringProp>
               <stringProp name="Argument.value">FAT</stringProp>
-              <stringProp name="Argument.desc">FAT UAT</stringProp>
+              <stringProp name="Argument.desc">FAT|UAT|PRO</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
         </Arguments>
         <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="读入数据文件-业务数据" enabled="false">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">gb2312</stringProp>
+          <stringProp name="filename">config\config.csv</stringProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
         <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="FlightDB-连接" enabled="true">
           <boolProp name="autocommit">true</boolProp>
           <stringProp name="checkQuery">Select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
-          <stringProp name="dataSource">FlightDB-${DBEnvironment}</stringProp>
-          <stringProp name="dbUrl">jdbc:sqlserver://flightdb.${DBEnvironment}.qa.nt.ctripcorp.com:55666;databaseName=master;integratedSecurity=true</stringProp>
+          <stringProp name="dataSource">FlightDB-${Environment}</stringProp>
+          <stringProp name="dbUrl">jdbc:sqlserver://flightdb.${Environment}.qa.nt.ctripcorp.com:55666;databaseName=master;integratedSecurity=true</stringProp>
           <stringProp name="driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
-          <stringProp name="password"></stringProp>
+          <stringProp name="password">Cisco1989963</stringProp>
           <stringProp name="poolMax">10</stringProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
-          <stringProp name="username"></stringProp>
+          <stringProp name="username">cdzhang</stringProp>
         </JDBCDataSource>
         <hashTree/>
         <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="HotelDB-连接" enabled="true">
           <boolProp name="autocommit">true</boolProp>
           <stringProp name="checkQuery">Select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
-          <stringProp name="dataSource">HotelDB-${DBEnvironment}</stringProp>
-          <stringProp name="dbUrl">jdbc:sqlserver://hoteldb.${DBEnvironment}.qa.nt.ctripcorp.com:55888;databaseName=master;integratedSecurity=true</stringProp>
+          <stringProp name="dataSource">HotelDB-${Environment}</stringProp>
+          <stringProp name="dbUrl">jdbc:sqlserver://hoteldb.${Environment}.qa.nt.ctripcorp.com:55888;databaseName=master;integratedSecurity=true</stringProp>
           <stringProp name="driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
-          <stringProp name="password"></stringProp>
+          <stringProp name="password">Cisco1989963</stringProp>
           <stringProp name="poolMax">10</stringProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
-          <stringProp name="username"></stringProp>
+          <stringProp name="username">cdzhang</stringProp>
         </JDBCDataSource>
         <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
@@ -112,19 +135,19 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="insertScriptPath" elementType="Argument">
               <stringProp name="Argument.name">insertScriptPath</stringProp>
-              <stringProp name="Argument.value">../project/TestScript/InsertResult.vbs</stringProp>
+              <stringProp name="Argument.value">../06testScript/InsertResult.vbs</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">插入测试结果脚本路径</stringProp>
             </elementProp>
             <elementProp name="generateScriptPath" elementType="Argument">
               <stringProp name="Argument.name">generateScriptPath</stringProp>
-              <stringProp name="Argument.value">../project/TestScript/GenerateReportFile.vbs</stringProp>
+              <stringProp name="Argument.value">../06testScript/GenerateReportFile.vbs</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">生成测试报告脚本路径</stringProp>
             </elementProp>
             <elementProp name="setReportFormatScriptPath" elementType="Argument">
               <stringProp name="Argument.name">setReportFormatScriptPath</stringProp>
-              <stringProp name="Argument.value">../project/TestScript/SetReportFormat.vbs</stringProp>
+              <stringProp name="Argument.value">../06testScript/SetReportFormat.vbs</stringProp>
               <stringProp name="Argument.desc">设置测试报告样式脚本路径</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
@@ -141,7 +164,7 @@
             </elementProp>
             <elementProp name="reportFilePath" elementType="Argument">
               <stringProp name="Argument.name">reportFilePath</stringProp>
-              <stringProp name="Argument.value">project\\TestReport\\</stringProp>
+              <stringProp name="Argument.value">results/</stringProp>
               <stringProp name="Argument.desc">测试报告相对路径</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
@@ -192,7 +215,7 @@
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="01-生成测试报告文件" enabled="false">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="01-生成测试报告文件" enabled="true">
           <stringProp name="TestPlan.comments">生成EXCEL文件用于保存对比结果</stringProp>
           <stringProp name="BeanShellSampler.query">System.out.println(&quot;------------当前脚本名称:===&quot;+Label);
 	String paramStringGen=&quot;wscript&amp;${generateScriptPath}&amp;${reportFileName}&amp;${reportSheetName}&amp;${reportFilePath}&quot;;
@@ -220,10 +243,10 @@
           <stringProp name="LoopController.loops">2</stringProp>
         </LoopController>
         <hashTree>
-          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="读入数据文件" enabled="true">
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="读入数据文件-业务数据" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding">gb2312</stringProp>
-            <stringProp name="filename">\\project\\TestData\\${TestDataFileName}</stringProp>
+            <stringProp name="filename">..\\05testData\\${Environment}\\${TestDataFileName}</stringProp>
             <boolProp name="quotedData">true</boolProp>
             <boolProp name="recycle">false</boolProp>
             <stringProp name="shareMode">shareMode.all</stringProp>
@@ -370,72 +393,6 @@ vars.putObject(&quot;dbResult&quot;,originalList);
               <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
             </BeanShellSampler>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${TCNo.} --验证身份-step1" enabled="false">
-              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${__eval(${request})}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain">ct.fat4.qa.nt.ctripcorp.com</stringProp>
-              <stringProp name="HTTPSampler.port">80</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              <stringProp name="HTTPSampler.protocol">http</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">//switchapi/platform.svc/rest/ticket</stringProp>
-              <stringProp name="HTTPSampler.method">POST</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-              <boolProp name="HTTPSampler.monitor">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="false">
-                <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import demo.JsonToHashMap;
-import org.json.*;
-
-HashMap responseMap=new HashMap();
-
-String sampleResultString=new String(ResponseData,&quot;GB2312&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
-vars.putObject(&quot;responseMapTemp&quot;,responseMap);
-String RespCode=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
-String RespDesc=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
-String RespStatus=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Success&quot;).toString();
-String Ticket=responseMap.get(&quot;TicketResult&quot;).get(&quot;Ticket&quot;).toString();
-
-if(!RespCode.equals(&quot;${ErrorCode}&quot;))
-{
-   Failure=true;
-   FailureMessage=&quot;期望应答码是:&quot;+&quot;${ErrorCode}&quot;+&quot;  实际应答码是&quot;+RespCode;
-}
-if(!RespDesc.equals(&quot;${Message}&quot;))
-{
-   Failure=true;
-   FailureMessage=&quot;期望应答码是:&quot;+&quot;${Message}&quot;+&quot;  实际应答码是&quot;+RespDesc;
-}
-
-if(!RespStatus.equals(&quot;${Success}&quot;))
-{
-   Failure=true;
-   FailureMessage=&quot;期望应答码是:&quot;+&quot;${Success}&quot;+&quot;  实际应答码是&quot;+RespStatus;
-}</stringProp>
-                <stringProp name="BeanShellAssertion.filename"></stringProp>
-                <stringProp name="BeanShellAssertion.parameters"></stringProp>
-                <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
-              </BeanShellAssertion>
-              <hashTree/>
-            </hashTree>
             <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="模块控制器" enabled="true">
               <collectionProp name="ModuleController.node_path">
                 <stringProp name="23750841">工作台</stringProp>
@@ -465,7 +422,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.ctrip.automation.GetResultFromString;
+import com.ctrip.automation.common.GetResultFromString;
 
 public  insertCompareResult(String FiledName,String No, String expectedValue,String actualValue, String failure, String  selectString) {
 
@@ -687,7 +644,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </hashTree>
           </hashTree>
         </hashTree>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="03-设置测试报告样式" enabled="false">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="03-设置测试报告样式" enabled="true">
           <stringProp name="BeanShellSampler.query">	System.out.println(&quot;------------当前脚本名称:===&quot;+Label);
 	String paramStringGen=&quot;wscript&amp;${setReportFormatScriptPath}&amp;${reportFileName}&amp;${reportSheetName}&amp;${reportFilePath}&quot;;
 	
@@ -714,6 +671,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -729,7 +687,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <subresults>true</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
-              <xml>true</xml>
+              <xml>false</xml>
               <fieldNames>false</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
@@ -737,9 +695,11 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -769,9 +729,10 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="用表格察看结果" enabled="true">
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -787,7 +748,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <subresults>true</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
-              <xml>true</xml>
+              <xml>false</xml>
               <fieldNames>false</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
@@ -795,9 +756,44 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename">..\results\Summarize.xml</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="用表格察看结果" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -885,7 +881,7 @@ vars.putObject(&quot;sqlList&quot;,sqlList);
           </BeanShellSampler>
           <hashTree/>
           <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
-            <stringProp name="dataSource">FlightDB-${DBEnvironment}</stringProp>
+            <stringProp name="dataSource">FlightDB-${Environment}</stringProp>
             <stringProp name="queryType">Select Statement</stringProp>
             <stringProp name="query">${__eval(${sqlTemp})}</stringProp>
             <stringProp name="queryArguments"></stringProp>
@@ -946,7 +942,7 @@ vars.putObject(&quot;dbResult&quot;,tempResult);</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1015,7 +1011,7 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1034,7 +1030,7 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.JsonToHashMap;
+import com.ctrip.automation.result2map.JsonToHashMap;
 import org.json.*;
 
 HashMap responseMap=new HashMap();
@@ -1066,7 +1062,7 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1085,7 +1081,7 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.JsonToHashMap;
+import com.ctrip.automation.result2map.JsonToHashMap;
 import org.json.*;
 
 HashMap responseMap=new HashMap();
@@ -1134,7 +1130,7 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1153,7 +1149,7 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.JsonToHashMap;
+import com.ctrip.automation.result2map.JsonToHashMap;
 import org.json.*;
 
 HashMap responseMap=new HashMap();
@@ -1185,7 +1181,7 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1204,7 +1200,7 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.JsonToHashMap;
+import com.ctrip.automation.result2map.JsonToHashMap;
 import org.json.*;
 
 HashMap responseMap=new HashMap();
@@ -1253,7 +1249,7 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1304,7 +1300,7 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1377,7 +1373,7 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1396,7 +1392,7 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.JsonToHashMap;
+import com.ctrip.automation.result2map.JsonToHashMap;
 import org.json.*;
 
 HashMap responseMap=new HashMap();
@@ -1428,7 +1424,7 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${Host}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__evalVar(${Environment})}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1447,7 +1443,7 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.JsonToHashMap;
+import com.ctrip.automation.result2map.JsonToHashMap;
 import org.json.*;
 
 HashMap responseMap=new HashMap();

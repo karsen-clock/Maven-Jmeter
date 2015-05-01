@@ -51,7 +51,7 @@
                         <ignoreResultFailures>true</ignoreResultFailures>
                         <testResultsTimestamp>true</testResultsTimestamp>
                         <testFilesIncluded>
-                           <jMeterTestFile>*.jmx</jMeterTestFile>
+                           <jMeterTestFile>Demo-001-*.jmx</jMeterTestFile>
                       </testFilesIncluded>
                       </configuration>
                     </execution>
@@ -355,7 +355,7 @@
 	</configuration>
 	</plugin>  
 	
-	<!--  
+  
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-antrun-plugin</artifactId>
@@ -368,16 +368,16 @@
 								</goals>
 								<configuration>
 									<tasks>
-										<mkdir dir="${project.build.directory}/jmeter/project" />
-										  <copy todir="${project.build.directory}/jmeter/project" >
-    										<fileset dir="src/test/project" />
+										<mkdir dir="${project.build.directory}/jmeter/06testScript" />
+										  <copy todir="${project.build.directory}/jmeter/06testScript" >
+    										<fileset dir="src/test/06testScript" />
   										  </copy>
 									</tasks>
 								</configuration>
 							</execution>
 						</executions>
 					</plugin>
--->
+
      
 	</plugins>
 	
