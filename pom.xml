@@ -51,7 +51,7 @@
                         <ignoreResultFailures>true</ignoreResultFailures>
                         <testResultsTimestamp>true</testResultsTimestamp>
                         <testFilesIncluded>
-                           <jMeterTestFile>Demo-001-*.jmx</jMeterTestFile>
+                           <jMeterTestFile>Demo-*.jmx</jMeterTestFile>
                       </testFilesIncluded>
                       </configuration>
                     </execution>
@@ -77,7 +77,7 @@
         Default: not set.
         Required.
         -->
-        <source>${project.build.directory}\jmeter\results\Summarize.xml</source>
+        <source>${project.build.directory}\jmeter\results\Testing.xml</source>
 
         <!--
         directory where to store analysis result files.
@@ -301,7 +301,7 @@
             <transformationSet>
               <dir>${project.build.directory}\jmeter\results</dir>
               <!-- <stylesheet>${basedir}\src\test\resources\SummaryReport.xsl</stylesheet>  -->
-               <stylesheet>${basedir}\src\test\resources\jmeter-results-normal-report_21.xsl</stylesheet>             
+               <stylesheet>${basedir}\src\test\resources\SummaryReport.xsl</stylesheet>             
               <outputDir>${project.build.directory}\results\summary</outputDir>
               <fileMappers>
                       <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
@@ -372,6 +372,11 @@
 										<mkdir dir="${project.build.directory}/jmeter/06testScript" />
 										  <copy todir="${project.build.directory}/jmeter/06testScript" >
     										<fileset dir="src/test/06testScript" />
+  										  </copy>
+									</tasks>
+									<tasks>
+										  <copy todir="${project.build.directory}/results/details" >
+    										<fileset dir="src/test/resources/pics" />
   										  </copy>
 									</tasks>
 								</configuration>
