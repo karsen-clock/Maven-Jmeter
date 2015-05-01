@@ -77,7 +77,7 @@
         Default: not set.
         Required.
         -->
-        <source>${project.build.directory}\jmeter\results\Testing.xml</source>
+        <source>${project.build.directory}\jmeter\results\Summarize.xml</source>
 
         <!--
         directory where to store analysis result files.
@@ -300,7 +300,8 @@
           <transformationSets>
             <transformationSet>
               <dir>${project.build.directory}\jmeter\results</dir>
-              <stylesheet>${basedir}\src\test\resources\SummaryReport.xsl</stylesheet>
+              <!-- <stylesheet>${basedir}\src\test\resources\SummaryReport.xsl</stylesheet>  -->
+               <stylesheet>${basedir}\src\test\resources\jmeter-results-normal-report_21.xsl</stylesheet>             
               <outputDir>${project.build.directory}\results\summary</outputDir>
               <fileMappers>
                       <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
