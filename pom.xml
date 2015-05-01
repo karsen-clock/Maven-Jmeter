@@ -20,6 +20,7 @@
   		<artifactId>json</artifactId>
   		<version>20080701</version>
   	</dependency>
+  	<!--  
   	 <dependency>
      <groupId>com.microsoft.sqlserver</groupId>
      <artifactId>sqljdbc4</artifactId>
@@ -30,6 +31,7 @@
   	<artifactId>CtripAutomation</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
   	</dependency>
+  	-->
 </dependencies>
   
   
