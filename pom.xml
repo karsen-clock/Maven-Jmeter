@@ -302,7 +302,7 @@
               <dir>${project.build.directory}\jmeter\results</dir>
               <!-- <stylesheet>${basedir}\src\test\resources\SummaryReport.xsl</stylesheet>  -->
                <stylesheet>${basedir}\src\test\resources\SummaryReport.xsl</stylesheet>             
-              <outputDir>${project.build.directory}\results\summary</outputDir>
+              <outputDir>${project.build.directory}\results\summaryReport</outputDir>
               <fileMappers>
                       <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
                          <targetExtension>html</targetExtension>
@@ -312,7 +312,7 @@
              <transformationSet>
               <dir>${project.build.directory}\jmeter\results</dir>
 			  <stylesheet>${basedir}\src\test\resources\DetailsReport.xsl</stylesheet>
-              <outputDir>${project.build.directory}\results\details</outputDir>
+              <outputDir>${project.build.directory}\results\detailsReport</outputDir>
               <fileMappers>
                       <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
                          <targetExtension>html</targetExtension>
@@ -375,7 +375,7 @@
   										  </copy>
 									</tasks>
 									<tasks>
-										  <copy todir="${project.build.directory}/results/details" >
+										  <copy todir="${project.build.directory}/results/detailsReport" >
     										<fileset dir="src/test/resources/pics" />
   										  </copy>
 									</tasks>
