@@ -29,18 +29,18 @@
                         
                      <!-- SET JMETER FILES TO RUN -->
                         <testFilesIncluded>
-                           <jMeterTestFile>Demo-*.jmx</jMeterTestFile>
+                           <jMeterTestFile>Demo-00*.jmx</jMeterTestFile>
                       </testFilesIncluded>
 					
 					<!-- SET RUN.ENVIRONMENT FAT4|UAT|PRO -->
 					   <propertiesJMeter>
-                          <run.environment>fat4</run.environment>
+                          <run.environment>FAT</run.environment>
                        </propertiesJMeter>
                        
                        <!-- SET JVM ARGUMENTS -->
                        <jMeterProcessJVMSettings>
-                                    <xms>512</xms>
-                                    <xmx>512</xmx>
+                                    <xms>1024</xms>
+                                    <xmx>1024</xmx>
                                     <arguments>
                                         <argument>-Xprof</argument>
                                         <argument>-Xfuture</argument>
@@ -369,7 +369,8 @@
           </transformationSets>
         </configuration>
 </plugin>	
-	
+
+<!-- 	
 <plugin>
 <groupId>org.apache.maven.plugins</groupId>
 <artifactId>maven-dependency-plugin</artifactId>
@@ -402,7 +403,7 @@
 	</archive>
 	</configuration>
 	</plugin>  
-	
+ -->	
   
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
