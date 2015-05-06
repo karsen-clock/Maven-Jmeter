@@ -21,7 +21,7 @@
                                 <goal>jmeter</goal>
                             </goals>
                     <configuration>
-                    
+                    <overrideRootLogLevel>debug</overrideRootLogLevel>
                     <!-- SET RESULTS FILE FORMAT -->
                        <resultsFileFormat>xml</resultsFileFormat>
                         <ignoreResultFailures>true</ignoreResultFailures>
@@ -36,8 +36,10 @@
 					   <propertiesJMeter>
                           <run.environment>FAT</run.environment>
                        </propertiesJMeter>
-                       
-                       <!-- SET JVM ARGUMENTS -->
+                      
+                    
+                    
+                       <!-- SET JVM ARGUMENTS 
                        <jMeterProcessJVMSettings>
                                     <xms>1024</xms>
                                     <xmx>1024</xmx>
@@ -46,7 +48,7 @@
                                         <argument>-Xfuture</argument>
                                     </arguments>
                         </jMeterProcessJVMSettings>
-                        
+                        -->
                          
                         <!-- SET REMOTE CONFIG -->
                         <!-- 
@@ -75,8 +77,7 @@
                     </execution>
                     </executions>
                     
-                                          
-<dependencies>
+ <dependencies>
 	<dependency>
   		<groupId>javax.activation</groupId>
   		<artifactId>activation</artifactId>
@@ -102,7 +103,8 @@
   	<artifactId>CtripAutomation</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
   	</dependency>
-</dependencies>
+</dependencies>                                         
+
              </plugin>
 
 	
