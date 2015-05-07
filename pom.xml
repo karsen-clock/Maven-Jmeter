@@ -3,7 +3,7 @@
   <groupId>Jmeter</groupId>
   <artifactId>maven.jmeter</artifactId>
   <version>0.0.3-SNAPSHOT</version>
-  
+
 
   
   
@@ -103,9 +103,8 @@
   	<artifactId>CtripAutomation</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
   	</dependency>
-</dependencies>                                         
-
-             </plugin>
+</dependencies>
+</plugin>
 
 	
 <plugin>
