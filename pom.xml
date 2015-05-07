@@ -371,6 +371,32 @@
         </configuration>
 </plugin>	
 
+<plugin>
+        <groupId>de.codecentric</groupId>
+        <artifactId>jmeter-graph-maven-plugin</artifactId>
+        <version>0.1.0</version>
+        <executions>
+          <execution>
+            <id>create-graphs</id>
+            <goals>
+              <goal>create-graph</goal>
+            </goals>
+            <phase>verify</phase>
+            <configuration>
+              <inputFile>${project.build.directory}/jmeter/results/20150507-Demo-001-GetData.jtl</inputFile>
+              <graphs>
+                <graph>
+                  <pluginType>ThreadsStateOverTime</pluginType>
+                  <width>800</width>
+                  <height>600</height>
+                  <outputFile>${project.build.directory}/jmeter/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
+                </graph>
+                <!-- ... you can declare more <graph>-elements here -->
+              </graphs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 <!-- 	
 <plugin>
 <groupId>org.apache.maven.plugins</groupId>
