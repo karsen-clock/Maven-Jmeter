@@ -389,7 +389,7 @@
                   <pluginType>ThreadsStateOverTime</pluginType>
                   <width>800</width>
                   <height>600</height>
-                  <outputFile>${project.build.directory}/jmeter/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
+                  <outputFile>${project.build.directory}/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
                 </graph>
                 <!-- ... you can declare more <graph>-elements here -->
               </graphs>
