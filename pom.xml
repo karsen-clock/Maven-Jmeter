@@ -39,7 +39,7 @@
                       
                     
                     
-                       <!-- SET JVM ARGUMENTS 
+                       <!-- SET JVM ARGUMENTS -->
                        <jMeterProcessJVMSettings>
                                     <xms>1024</xms>
                                     <xmx>1024</xmx>
