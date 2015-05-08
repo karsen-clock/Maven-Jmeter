@@ -34,7 +34,7 @@
 					
 					<!-- SET RUN.ENVIRONMENT FAT4|UAT|PRO -->
 					   <propertiesJMeter>
-                          <run.environment>FAT</run.environment>
+                          <run.environment>FAT</run.environment> 
                        </propertiesJMeter>
                       
                     
@@ -294,9 +294,9 @@
         Default IOS8601
         -->
         
-        <!--  
+        <!--  -->
         <remoteResourcesFromUntilDateFormat>HH:mm_yyyyMMdd</remoteResourcesFromUntilDateFormat>
-        -->
+        
         
 
         <!--
