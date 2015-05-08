@@ -107,26 +107,42 @@
 			<xsl:variable name="allTotalTime" select="sum(//@t)" />
 			<xsl:variable name="allAverageTime" select="$allTotalTime div $allCount" />
 			<xsl:variable name="allMinTime">
-				<xsl:call-template name="min">
+				<!--  <xsl:call-template name="min">
 					<xsl:with-param name="nodes" select="//@t" />
 				</xsl:call-template>
+				-->
+				<xsl:for-each select="//@t">
+				<xsl:sort data-type="number"/>
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			<xsl:variable name="allMaxTime">
-				<xsl:call-template name="max">
-					<xsl:with-param name="nodes" select="//@t" />
-				</xsl:call-template>
+				<xsl:for-each select="//@t">
+				<xsl:sort data-type="number" order="descending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			<xsl:variable name="allTotalLatency" select="sum(//@lt)" />
 			<xsl:variable name="allAverageLatency" select="$allTotalLatency div $allCount" />
 			<xsl:variable name="allMinLatency">
-				<xsl:call-template name="min">
-					<xsl:with-param name="nodes" select="//@lt" />
-				</xsl:call-template>
+				<xsl:for-each select="//@lt">
+				<xsl:sort data-type="number"/>
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			<xsl:variable name="allMaxLatency">
-				<xsl:call-template name="max">
-					<xsl:with-param name="nodes" select="//@lt" />
-				</xsl:call-template>
+				<xsl:for-each select="//@lt">
+				<xsl:sort data-type="number" order="descending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			
 			<xsl:attribute name="class">
@@ -204,27 +220,41 @@
 			<xsl:variable name="totalTime" select="sum(//*[@lb = current()/@lb]/@t)" />
 			<xsl:variable name="averageTime" select="$totalTime div $count" />
 			<xsl:variable name="minTime">
-				<xsl:call-template name="min">
-					<xsl:with-param name="nodes" select="//*[@lb = current()/@lb]/@t" />
-				</xsl:call-template>
+				<xsl:for-each select="../*[@lb = current()/@lb]/@t">
+				<xsl:sort data-type="number" order="ascending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
+
+
 			<xsl:variable name="maxTime">
-				<xsl:call-template name="max">
-					<xsl:with-param name="nodes" select="//*[@lb = current()/@lb]/@t" />
-				</xsl:call-template>
+				<xsl:for-each select="../*[@lb = current()/@lb]/@t">
+				<xsl:sort data-type="number" order="descending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			
 				<xsl:variable name="totalLatency" select="sum(//*[@lb = current()/@lb]/@lt)" />
 			<xsl:variable name="averageLatency" select="$totalTime div $count" />
 			<xsl:variable name="minLatency">
-				<xsl:call-template name="min">
-					<xsl:with-param name="nodes" select="//*[@lb = current()/@lb]/@lt" />
-				</xsl:call-template>
+				<xsl:for-each select="../*[@lb = current()/@lb]/@lt">
+				<xsl:sort data-type="number" order="ascending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			<xsl:variable name="maxLatency">
-				<xsl:call-template name="max">
-					<xsl:with-param name="nodes" select="//*[@lb = current()/@lb]/@lt" />
-				</xsl:call-template>
+				<xsl:for-each select="../*[@lb = current()/@lb]/@lt">
+				<xsl:sort data-type="number" order="descending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			<tr valign="top">
 				<xsl:attribute name="class">
@@ -316,7 +346,7 @@
 </xsl:template>
 
 <xsl:template name="min">
-	<xsl:param name="nodes" select="/.." />
+	<xsl:param name="nodes" select="/testResults/*/@t" />
 	<xsl:choose>
 		<xsl:when test="not($nodes)">NaN</xsl:when>
 		<xsl:otherwise>

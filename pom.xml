@@ -383,7 +383,7 @@
             </goals>
             <phase>verify</phase>
             <configuration>
-              <inputFile>${project.build.directory}/jmeter/results/20150507-Demo-001-GetData.jtl</inputFile>
+              <inputFile>${project.build.directory}/jmeter/results/20150508-Demo-001-GetData.jtl</inputFile>
               <graphs>
                 <graph>
                   <pluginType>ThreadsStateOverTime</pluginType>

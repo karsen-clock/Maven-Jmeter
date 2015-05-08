@@ -170,14 +170,20 @@
 			<xsl:variable name="allTotalTime" select="sum(/testResults/*/@t)" />
 			<xsl:variable name="allAverageTime" select="$allTotalTime div $allCount" />
 			<xsl:variable name="allMinTime">
-				<xsl:call-template name="min">
-					<xsl:with-param name="nodes" select="/testResults/*/@t" />
-				</xsl:call-template>
+			<xsl:for-each select="/testResults/*/@t">
+				<xsl:sort data-type="number" order="ascending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			<xsl:variable name="allMaxTime">
-				<xsl:call-template name="max">
-					<xsl:with-param name="nodes" select="/testResults/*/@t" />
-				</xsl:call-template>
+							<xsl:for-each select="/testResults/*/@t">
+				<xsl:sort data-type="number" order="descending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+			</xsl:for-each>
 			</xsl:variable>
 			<xsl:attribute name="class">
 				<xsl:choose>
@@ -236,14 +242,20 @@
 			<xsl:variable name="totalTime" select="sum(../*[@lb = current()/@lb]/@t)" />
 			<xsl:variable name="averageTime" select="$totalTime div $count" />
 			<xsl:variable name="minTime">
-				<xsl:call-template name="min">
-					<xsl:with-param name="nodes" select="../*[@lb = current()/@lb]/@t" />
-				</xsl:call-template>
+			<xsl:for-each select="../*[@lb = current()/@lb]/@t">
+				<xsl:sort data-type="number" order="ascending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+				</xsl:for-each>
 			</xsl:variable>
 			<xsl:variable name="maxTime">
-				<xsl:call-template name="max">
-					<xsl:with-param name="nodes" select="../*[@lb = current()/@lb]/@t" />
-				</xsl:call-template>
+				<xsl:for-each select="../*[@lb = current()/@lb]/@t">
+				<xsl:sort data-type="number" order="descending" />
+				<xsl:if test="position() = 1">
+					<xsl:value-of select="number(.)" />
+				</xsl:if>
+				</xsl:for-each>
 			</xsl:variable>
 			<tr valign="top">
 				<xsl:attribute name="class">
