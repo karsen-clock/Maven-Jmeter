@@ -387,6 +387,7 @@
             </goals>
             <phase>verify</phase>
             <configuration>
+             <encoding>UTF-8</encoding>
               <inputFile>${project.build.directory}/jmeter/results/Testing.xml</inputFile>
               <graphs>
                 <graph>
