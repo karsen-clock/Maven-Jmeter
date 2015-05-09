@@ -389,7 +389,8 @@
               <inputFile>${project.build.directory}/jmeter/results/Demo-002-test.jtl</inputFile>
               <graphs>
                 <graph>
-                  <pluginType>ThreadsStateOverTime</pluginType>
+                  <pluginType>
+</pluginType>
                   <width>800</width>
                   <height>600</height>
                   <outputFile>${project.build.directory}/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
