@@ -119,6 +119,7 @@
       </goals>
           <phase>install</phase>
       <configuration>
+      <encoding>UTF-8</encoding>
         <!--
         An AntPath-Style pattern matching a JMeter XML result file to analyze. Must be a fully qualified path.
         File may be GZiped, must end in .gz then.
