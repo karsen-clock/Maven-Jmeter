@@ -25,11 +25,11 @@
                     <!-- SET RESULTS FILE FORMAT -->
                        <resultsFileFormat>xml</resultsFileFormat>
                         <ignoreResultFailures>true</ignoreResultFailures>
-                        <testResultsTimestamp>true</testResultsTimestamp>
+                        <testResultsTimestamp>false</testResultsTimestamp>
                         
                      <!-- SET JMETER FILES TO RUN -->
                         <testFilesIncluded>
-                           <jMeterTestFile>Demo-00*.jmx</jMeterTestFile>
+                           <jMeterTestFile>Demo-002*.jmx</jMeterTestFile>
                       </testFilesIncluded>
 					
 					<!-- SET RUN.ENVIRONMENT FAT4|UAT|PRO -->
@@ -166,14 +166,17 @@
         Default: not set.
         -->
         
-       <!--  <requestGroups> --> 
-         <!--  <pages>/page/**</pages> --> 
-         <!-- <binaries>/binary/**</binaries>--> 
-          <!-- Optional --> -->
+       <!-- 
+         <requestGroups>  
+         <pages>/page/**</pages>
+         <binaries>/binary/**</binaries> 
+       -->
+          <!-- Optional -->
+         
           <!--  <checkResult> -->
             <!-- As above -->
           <!-- </checkResult> -->
-          
+        -->  
         <!--</requestGroups>--> 
         <!--<requestGroups>--> 
           <!--<requestGroup>--> 
@@ -191,8 +194,8 @@
           <!--  <checkResult> -->
             <!-- As above -->
           <!-- </checkResult> -->
-         <!-- </requestGroup>--> 
-        <!-- </requestGroups>--> 
+         <!-- </requestGroup> -->
+        <!--</requestGroups> -->
 
         <!--
         If set to true, additional files "<category>-sizes.csv" and "<category>-durations.csv" will be stored.
@@ -283,7 +286,7 @@
         <remoteResources>
           <property>
             <name>http://localhost/path?from=_FROM_&amp;to=_TO_</name>
-            <value>my_resource.html</value>
+            <value>Testing.html</value>
           </property>
         </remoteResources>
          -->
@@ -383,7 +386,7 @@
             </goals>
             <phase>verify</phase>
             <configuration>
-              <inputFile>${project.build.directory}/jmeter/results/20150508-Demo-001-GetData.jtl</inputFile>
+              <inputFile>${project.build.directory}/jmeter/results/Demo-002-test.jtl</inputFile>
               <graphs>
                 <graph>
                   <pluginType>ThreadsStateOverTime</pluginType>
