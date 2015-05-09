@@ -21,6 +21,7 @@
                                 <goal>jmeter</goal>
                             </goals>
                     <configuration>
+                    <encoding>UTF-8</encoding>
                     <overrideRootLogLevel>debug</overrideRootLogLevel>
                     <!-- SET RESULTS FILE FORMAT -->
                        <resultsFileFormat>xml</resultsFileFormat>
@@ -386,11 +387,10 @@
             </goals>
             <phase>verify</phase>
             <configuration>
-              <inputFile>${project.build.directory}/jmeter/results/Demo-002-test.jtl</inputFile>
+              <inputFile>${project.build.directory}/jmeter/results/Testing.xml</inputFile>
               <graphs>
                 <graph>
-                  <pluginType>
-</pluginType>
+                  <pluginType>ThreadsStateOverTime</pluginType>
                   <width>800</width>
                   <height>600</height>
                   <outputFile>${project.build.directory}/results/SimpleWebservicePerformanceTest-ThreadsStateOverTime.png</outputFile>
