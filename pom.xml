@@ -41,7 +41,7 @@
                         
                      <!-- SET JMETER FILES TO RUN -->
                         <testFilesIncluded>
-                           <jMeterTestFile>Demo-002-test.jmx</jMeterTestFile>
+                           <jMeterTestFile>Demo-00*.jmx</jMeterTestFile>
                       </testFilesIncluded>
 					
 					<!-- SET RUN.ENVIRONMENT FAT4|UAT|PRO -->
