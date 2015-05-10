@@ -10,15 +10,6 @@
   <build>
 
     <plugins>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
       
    <plugin>
                     <groupId>com.lazerycode.jmeter</groupId>
@@ -130,7 +121,6 @@
       </goals>
           <phase>install</phase>
       <configuration>
-      <encoding>UTF-8</encoding>
         <!--
         An AntPath-Style pattern matching a JMeter XML result file to analyze. Must be a fully qualified path.
         File may be GZiped, must end in .gz then.
@@ -399,7 +389,6 @@
             </goals>
             <phase>verify</phase>
             <configuration>
-             <encoding>UTF-8</encoding>
               <inputFile>${project.build.directory}/jmeter/results/Testing.xml</inputFile>
               <graphs>
                 <graph>
