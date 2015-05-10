@@ -10,6 +10,16 @@
   <build>
 
     <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      
    <plugin>
                     <groupId>com.lazerycode.jmeter</groupId>
                     <artifactId>jmeter-maven-plugin</artifactId>
@@ -31,7 +41,7 @@
                         
                      <!-- SET JMETER FILES TO RUN -->
                         <testFilesIncluded>
-                           <jMeterTestFile>Demo-00*.jmx</jMeterTestFile>
+                           <jMeterTestFile>Demo-002-test.jmx</jMeterTestFile>
                       </testFilesIncluded>
 					
 					<!-- SET RUN.ENVIRONMENT FAT4|UAT|PRO -->
