@@ -1,0 +1,4 @@
+1.集成windows身份鉴权
+	sqljdbc_auth.dll放至C:/windows/System32目录
+2.安装accessdatabaseengine
+         运行D:\Users\cdzhang\Downloads\AccessDatabaseEngine.exe /passive（安装文件路径）

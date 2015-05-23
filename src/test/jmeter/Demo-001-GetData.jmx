@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="2.4" jmeter="2.12-SNAPSHOT.20140707">
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Get-Orders-Data" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -36,8 +36,8 @@
             </elementProp>
             <elementProp name="InterfaceType" elementType="Argument">
               <stringProp name="Argument.name">InterfaceType</stringProp>
-              <stringProp name="Argument.value">查询类</stringProp>
-              <stringProp name="Argument.desc">查询类/修改类</stringProp>
+              <stringProp name="Argument.value">Get</stringProp>
+              <stringProp name="Argument.desc">查询类/修改类  Get|Modify</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="FAT" elementType="Argument">
@@ -204,7 +204,7 @@
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="01-生成测试报告文件" enabled="false">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="01-生成测试报告文件" enabled="true">
           <stringProp name="TestPlan.comments">生成EXCEL文件用于保存对比结果</stringProp>
           <stringProp name="BeanShellSampler.query">System.out.println(&quot;------------当前脚本名称:===&quot;+Label);
 	String paramStringGen=&quot;wscript&amp;${generateScriptPath}&amp;${reportFileName}&amp;${reportSheetName}&amp;${reportFilePath}&quot;;
@@ -329,6 +329,7 @@ vars.put(&quot;preCounter&quot;,${__counter(true,)});</stringProp>
                   <stringProp name="variableNames">reserved</stringProp>
                   <stringProp name="resultVariable"></stringProp>
                   <stringProp name="queryTimeout"></stringProp>
+                  <stringProp name="resultSetHandler">Store as String</stringProp>
                 </JDBCSampler>
                 <hashTree>
                   <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="生成数据库请求数据-PreProcessor" enabled="true">
@@ -368,13 +369,12 @@ vars.put(&quot;jdbcVariable&quot;,jdbcVariable);
             <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="保存请求之前查询的结果" enabled="true">
               <stringProp name="TestPlan.comments">保存结果并清空数组</stringProp>
               <stringProp name="BeanShellSampler.query">System.out.println(&quot;${TCNo.}------------当前脚本名称:===&quot;+Label);
-import java.util.List;
 import java.util.ArrayList;
-List originalList=new ArrayList();
+List originalListTemp=new ArrayList();
 originalList=vars.getObject(&quot;dbResult&quot;);
-vars.putObject(&quot;originalList&quot;,originalList);
-originalList.clear();
-vars.putObject(&quot;dbResult&quot;,originalList);
+vars.putObject(&quot;originalList&quot;,originalListTemp);
+originalListTemp.clear();
+vars.putObject(&quot;dbResult&quot;,originalListTemp);
 
 </stringProp>
               <stringProp name="BeanShellSampler.filename"></stringProp>
@@ -398,7 +398,7 @@ vars.putObject(&quot;dbResult&quot;,originalList);
               </collectionProp>
             </ModuleController>
             <hashTree/>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器-是否对比结果产生记录" enabled="false">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器-是否对比结果产生记录" enabled="true">
               <stringProp name="IfController.condition">&quot;${SQL}&quot;!=&quot;&quot;</stringProp>
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
@@ -413,6 +413,7 @@ import java.util.HashMap;
 import java.math.BigDecimal;
 import com.ctrip.automation.common.GetResultFromString;
 
+//---------------------------保存结果-------------------------
 public  insertCompareResult(String FiledName,String No, String expectedValue,String actualValue, String failure, String  selectString) {
 
 		
@@ -474,12 +475,13 @@ if(actualList.size()!=checkFiledList.size())
 	String msg=&quot;原始请求列表与检查字段列表不一致，请检查输入文件是否存在问题!原始请求结果条数:&quot;+actualList.size().toString()+&quot; 期望校验对应结果条数:&quot;+checkFiledList.size().toString();
 	LogException(String.valueOf(i),msg);
 	SampleResult.setStopThread(true);
-	
+
 	log.info(msg);
 }
 
 for(int i=0;i&lt;actualList.size();i++)
 {
+	
 	
 	String checkFiledTemp=checkFiledList.get(i).toString();
 	if(checkFiledTemp.contains(&quot;(&quot;))
@@ -525,7 +527,7 @@ for(int i=0;i&lt;actualList.size();i++)
 			}
 
 		}
-		
+
 		if(logTable)
 		{
 			if(!actualList.get(i).get(0).containsKey(fieldName))
@@ -556,10 +558,21 @@ for(int i=0;i&lt;actualList.size();i++)
 		else
 		{
 			
-			 expected=fieldValue==null?&quot;0&quot;:fieldValue;
+			 
 			 actual=actualList.get(i).get(0).get(fieldName)==null?&quot;0&quot;:actualList.get(i).get(0).get(fieldName).toString();
-			 original=originalList.get(i).get(0).get(fieldName)==null?&quot;0&quot;:originalList.get(i).get(0).get(fieldName).toString();
 
+			 if(expected.contains(&quot;?&quot;))
+			 {
+			 original=subString(1,fieldValue.length());
+			 expected=fieldValue==null?&quot;0&quot;:fieldValue;
+			 }
+			 else
+			 {
+			 original=originalList.get(i).get(0).get(fieldValue)==null?&quot;0&quot;:originalList.get(i).get(0).get(fieldValue).toString();
+			 expected=actualList.get(i).get(0).get(fieldName)==null?&quot;0&quot;:actualList.get(i).get(0).get(fieldName).toString();	
+			 }
+
+			
 			log.info(&quot;original=&quot;+original+&quot;=================expected=&quot;+expected+&quot;-----actual=&quot;+actual);
 			
 			if(expected.contains(&quot;+&quot;) || expected.contains(&quot;-&quot;))
@@ -595,9 +608,9 @@ for(int i=0;i&lt;actualList.size();i++)
 
 
 		System.out.println(&quot;=========当前正在对比的是第&quot;+i+&quot;次循环，第&quot;+j+&quot;个检查字段对比完成=======&quot;+&quot;\n&quot;);
-		System.out.println(&quot;%%%%%终于开始插入数据对比记录了%%%%%&quot;);
+
 	 	String selectString=sqlListResult.get(i).toString();
-	 	System.out.println(&quot;??????????????????++++++++++++&quot;+${JourneyNo});
+
 	 	System.out.println(selectString);
 		selectString=selectString.replace(&quot;&apos;&quot;,&quot;&quot;);
 		
@@ -606,6 +619,7 @@ for(int i=0;i&lt;actualList.size();i++)
 		String expectedString=expected.toString();
 		String actualString=actual.toString();
 		String No=String.valueOf(i);
+		
 		     if(flagIndicator)
 		     {
 		     	failureFlag=&quot;Failed&quot;;
@@ -633,7 +647,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </hashTree>
           </hashTree>
         </hashTree>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="03-设置测试报告样式" enabled="false">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="03-设置测试报告样式" enabled="true">
           <stringProp name="BeanShellSampler.query">	System.out.println(&quot;------------当前脚本名称:===&quot;+Label);
 	String paramStringGen=&quot;wscript&amp;${setReportFormatScriptPath}&amp;${reportFileName}&amp;${reportSheetName}&amp;${reportFilePath}&quot;;
 	
@@ -660,6 +674,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -687,6 +702,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -719,6 +735,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="用表格察看结果" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -746,6 +763,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -778,6 +796,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -793,7 +812,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <subresults>true</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
-              <xml>true</xml>
+              <xml>false</xml>
               <fieldNames>false</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
@@ -805,6 +824,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -878,14 +898,24 @@ vars.putObject(&quot;sqlList&quot;,sqlList);
           <stringProp name="LoopController.loops">${sqlNum}</stringProp>
         </LoopController>
         <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="false">
+            <stringProp name="CounterConfig.start">0</stringProp>
+            <stringProp name="CounterConfig.end">${sqlNum}-1</stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">Counter</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">true</boolProp>
+            <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+          </CounterConfig>
+          <hashTree/>
           <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="计数器-生成数据库查询循环计数器-${sqlNum}" enabled="true">
             <stringProp name="BeanShellSampler.query"> System.out.println(&quot;${TCNo.}------------当前脚本名称:===&quot;+Label);
 
 
  
- //vars.put(&quot;sqlNum&quot;,Integer.toString(${sqlNum}-1));
+//vars.put(&quot;sqlNum&quot;,Integer.toString(${sqlNum}-1));
 vars.put(&quot;Counter&quot;,Integer.toString(${sqlNum}-1));
- //vars.put(&quot;Counter&quot;,Integer.toString(${__counter(true,)}-1));</stringProp>
+//vars.put(&quot;Counter&quot;,Integer.toString(${__counter(true,)}-1));</stringProp>
             <stringProp name="BeanShellSampler.filename"></stringProp>
             <stringProp name="BeanShellSampler.parameters"></stringProp>
             <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
@@ -900,6 +930,7 @@ vars.put(&quot;Counter&quot;,Integer.toString(${sqlNum}-1));
             <stringProp name="variableNames">reserved</stringProp>
             <stringProp name="resultVariable">queryResult</stringProp>
             <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="resultSetHandler">Store as Object</stringProp>
           </JDBCSampler>
           <hashTree>
             <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="处理数据库查询请求参数" enabled="true">
@@ -927,10 +958,12 @@ vars.put(&quot;sqlTemp&quot;,sqlListTemp.get(${Counter}).toString());
 import java.util.List;
 import java.util.ArrayList;
 
+
 List tempResult=new ArrayList();
 tempResult=vars.getObject(&quot;dbResult&quot;);
 tempResult.add(vars.getObject(&quot;queryResult&quot;));
-vars.putObject(&quot;dbResult&quot;,tempResult);</stringProp>
+vars.putObject(&quot;dbResult&quot;,tempResult);
+</stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
@@ -972,14 +1005,14 @@ vars.putObject(&quot;dbResult&quot;,tempResult);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.common.JsonToHashMap;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;GB2312&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 String RespCode=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 String RespDesc=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
@@ -1041,14 +1074,14 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;GB2312&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 //String RespCode=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 //String RespDesc=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
@@ -1092,14 +1125,14 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 String RespCode=responseMap.get(&quot;QueryCompaniesResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 String RespDesc=responseMap.get(&quot;QueryCompaniesResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
@@ -1160,14 +1193,14 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;GB2312&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 //String RespCode=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 //String RespDesc=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
@@ -1211,14 +1244,14 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;GB2312&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 String RespCode=responseMap.get(&quot;GetTransactionsResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 String RespDesc=responseMap.get(&quot;GetTransactionsResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
@@ -1279,14 +1312,14 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 //String RespCode=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 //String RespDesc=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
@@ -1330,40 +1363,54 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import java.util.List;
+import java.util.ArrayList;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
-String RespCode=responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
-String RespDesc=responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
-String RespStatus=responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;Status&quot;).get(&quot;Success&quot;).toString();
+String respCode=responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
+String respDesc=responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
+String respStatus=responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;Status&quot;).get(&quot;Success&quot;).toString();
 
-System.out.println(&quot;--------------------------------&quot;);
-System.out.println(responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;ItineraryList&quot;).get(0).get(&quot;FlightOrderInfoList&quot;));
-System.out.println(&quot;???????????????????????????&quot;);
+//put original result to dbresult
+//vars.putObject(&quot;originalList&quot;,responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;ItineraryList&quot;).get(0).get(&quot;FlightOrderInfoList&quot;));
+System.out.println(&quot;****************输出接口返回部分内容****************&quot;);
+//System.out.println(responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;ItineraryList&quot;).get(0).get(&quot;FlightOrderInfoList&quot;));
 
 
-if(!RespCode.equals(&quot;${ErrorCode}&quot;))
+
+if(!respCode.equals(&quot;${ErrorCode}&quot;))
 {
    Failure=true;
    FailureMessage=&quot;期望应答码是:&quot;+&quot;${ErrorCode}&quot;+&quot;  实际应答码是&quot;+RespCode;
 }
-if(!RespDesc.equals(&quot;${Message}&quot;))
+if(!respDesc.equals(&quot;${Message}&quot;))
 {
    Failure=true;
-   FailureMessage=&quot;期望应答码是:&quot;+&quot;${Message}&quot;+&quot;  实际应答码是&quot;+RespDesc;
+   FailureMessage=&quot;期望响应信息是:&quot;+&quot;${Message}&quot;+&quot;  实际应响应信息是&quot;+RespDesc;
 }
 
-if(!RespStatus.equals(&quot;${Success}&quot;))
+if(!respStatus.equals(&quot;${Success}&quot;))
 {
    Failure=true;
-   FailureMessage=&quot;期望应答码是:&quot;+&quot;${Success}&quot;+&quot;  实际应答码是&quot;+RespStatus;
-}</stringProp>
+   FailureMessage=&quot;期望结果是:&quot;+&quot;${Success}&quot;+&quot;  实际结果是&quot;+RespStatus;
+}
+
+//override original list
+List originalListTemp=new ArrayList();
+List originalList=new ArrayList();
+
+originalListTemp=responseMap.get(&quot;SearchOrderResult&quot;).get(&quot;ItineraryList&quot;);
+originalList.add(originalListTemp);
+System.out.println(originalList.get(0).get(0)+&quot;=======================&quot;);
+vars.putObject(&quot;originalList&quot;,originalList);
+</stringProp>
               <stringProp name="BeanShellAssertion.filename"></stringProp>
               <stringProp name="BeanShellAssertion.parameters"></stringProp>
               <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -1403,14 +1450,14 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;GB2312&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 //String RespCode=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 //String RespDesc=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
@@ -1454,14 +1501,14 @@ vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
           <hashTree>
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import com.ctrip.automation.result2map.JsonToHashMap;
-import org.json.*;
+import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;GB2312&quot;);
-JsonToHashMap js=new JsonToHashMap();
-responseMap=js.parserToMap(sampleResultString);
+JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 String RespCode=responseMap.get(&quot;SearchOrderPerPersonResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 String RespDesc=responseMap.get(&quot;SearchOrderPerPersonResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();

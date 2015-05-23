@@ -12,7 +12,6 @@ SheetName = Wscript.Arguments(9)
 ReportFilePath=Wscript.Arguments(10)
 ImageFilePath="reserved"
 
-
 Call GenerateReport(TestName,ActionName,No,FieldName,ActualValue,ExpectedValue, ExecuteStatus, ExecuteDetails,ImageFilePath,ReportFileName,SheetName,ReportFilePath)
 
 
