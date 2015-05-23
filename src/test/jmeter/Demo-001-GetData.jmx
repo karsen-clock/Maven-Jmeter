@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+<jmeterTestPlan version="1.2" properties="2.4" jmeter="2.12-SNAPSHOT.20140707">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Get-Orders-Data" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -204,7 +204,7 @@
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="01-生成测试报告文件" enabled="true">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="01-生成测试报告文件" enabled="false">
           <stringProp name="TestPlan.comments">生成EXCEL文件用于保存对比结果</stringProp>
           <stringProp name="BeanShellSampler.query">System.out.println(&quot;------------当前脚本名称:===&quot;+Label);
 	String paramStringGen=&quot;wscript&amp;${generateScriptPath}&amp;${reportFileName}&amp;${reportSheetName}&amp;${reportFilePath}&quot;;
@@ -398,7 +398,7 @@ vars.putObject(&quot;dbResult&quot;,originalListTemp);
               </collectionProp>
             </ModuleController>
             <hashTree/>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器-是否对比结果产生记录" enabled="true">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器-是否对比结果产生记录" enabled="false">
               <stringProp name="IfController.condition">&quot;${SQL}&quot;!=&quot;&quot;</stringProp>
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
@@ -647,7 +647,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </hashTree>
           </hashTree>
         </hashTree>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="03-设置测试报告样式" enabled="true">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="03-设置测试报告样式" enabled="false">
           <stringProp name="BeanShellSampler.query">	System.out.println(&quot;------------当前脚本名称:===&quot;+Label);
 	String paramStringGen=&quot;wscript&amp;${setReportFormatScriptPath}&amp;${reportFileName}&amp;${reportSheetName}&amp;${reportFilePath}&quot;;
 	
@@ -674,7 +674,6 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
-            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -702,7 +701,6 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </value>
           </objProp>
           <objProp>
-            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -735,7 +733,6 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="用表格察看结果" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
-            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -763,7 +760,6 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </value>
           </objProp>
           <objProp>
-            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -796,7 +792,6 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
-            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -824,7 +819,6 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
             </value>
           </objProp>
           <objProp>
-            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
