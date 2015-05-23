@@ -459,12 +459,11 @@
 										  <copy todir="${project.build.directory}/jmeter/06testScript" >
     										<fileset dir="src/test/06testScript" />
   										  </copy>
-									</tasks>
-									<tasks>
 										  <copy todir="${project.build.directory}/results/detailsReport" >
     										<fileset dir="src/test/resources/pics" />
   										  </copy>
 									</tasks>
+
 								</configuration>
 							</execution>
 						</executions>
