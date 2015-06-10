@@ -235,7 +235,7 @@
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="读入数据文件-业务数据" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding">gb2312</stringProp>
-            <stringProp name="filename">..\\05testData\\${Environment}\\${TestDataFileName}_${Environment}.csv</stringProp>
+            <stringProp name="filename">..\\05testData\\${Environment}\\${TestDataFileName}.csv</stringProp>
             <boolProp name="quotedData">true</boolProp>
             <boolProp name="recycle">true</boolProp>
             <stringProp name="shareMode">shareMode.all</stringProp>
