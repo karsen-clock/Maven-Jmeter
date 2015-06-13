@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Jmeter</groupId>
   <artifactId>maven.jmeter</artifactId>
-  <version>0.0.3-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
 
   
@@ -114,7 +114,7 @@
   	<dependency>
   	<groupId>Ctrip</groupId>
   	<artifactId>CtripAutomation</artifactId>
-  	<version>0.6.0-SNAPSHOT</version>
+  	<version>1.0.0-SNAPSHOT</version>
   	</dependency>
 
 </dependencies>
