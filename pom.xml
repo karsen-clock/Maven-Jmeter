@@ -32,15 +32,15 @@
                         
                      <!-- SET JMETER FILES TO RUN -->
                         <testFilesIncluded>
-                           <jMeterTestFile>Demo-00*.jmx</jMeterTestFile>
+                           <jMeterTestFile>*.jmx</jMeterTestFile>
                       </testFilesIncluded>
 					
 					<!-- SET RUN.ENVIRONMENT FAT4|UAT|PRO -->
 					   <propertiesJMeter>
-                          <run.environment>FAT</run.environment> 
+                          <run.environment>FAT</run.environment>
+                          <jmeterengine.force.system.exit>true</jmeterengine.force.system.exit> 
                        </propertiesJMeter>
-                      
-                    
+      
                     
                        <!-- SET JVM ARGUMENTS 
                        <jMeterProcessJVMSettings>
