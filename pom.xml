@@ -26,7 +26,7 @@
                     <encoding>UTF-8</encoding>
                     <overrideRootLogLevel>debug</overrideRootLogLevel>
                     <!-- SET RESULTS FILE FORMAT -->
-                       <resultsFileFormat>xml</resultsFileFormat>
+                        <resultsFileFormat>xml</resultsFileFormat>
                         <ignoreResultFailures>true</ignoreResultFailures>
                         <testResultsTimestamp>false</testResultsTimestamp>
                         

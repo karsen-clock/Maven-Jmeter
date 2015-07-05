@@ -11,1078 +11,6 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="false">
-        <collectionProp name="Arguments.arguments">
-          <elementProp name="host" elementType="Argument">
-            <stringProp name="Argument.name">host</stringProp>
-            <stringProp name="Argument.value">ws.soa.dev.nt.ctripcorp.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">Host of Webservice</stringProp>
-          </elementProp>
-          <elementProp name="environment" elementType="Argument">
-            <stringProp name="Argument.name">environment</stringProp>
-            <stringProp name="Argument.value">FWS</stringProp>
-            <stringProp name="Argument.desc">Environment</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-        </collectionProp>
-      </Arguments>
-      <hashTree/>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="false">
-        <collectionProp name="HeaderManager.headers">
-          <elementProp name="Content-Type" elementType="Header">
-            <stringProp name="Header.name">Content-Type</stringProp>
-            <stringProp name="Header.value">application/json</stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Header">
-            <stringProp name="Header.name">X-Requested-With</stringProp>
-            <stringProp name="Header.value">XMLHttpRequest</stringProp>
-          </elementProp>
-        </collectionProp>
-      </HeaderManager>
-      <hashTree/>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="false">
-        <collectionProp name="HeaderManager.headers">
-          <elementProp name="Content-Type" elementType="Header">
-            <stringProp name="Header.name">Content-Type</stringProp>
-            <stringProp name="Header.value">application/xml</stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Header">
-            <stringProp name="Header.name">X-Requested-With</stringProp>
-            <stringProp name="Header.value">XMLHttpRequest</stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Header">
-            <stringProp name="Header.name">Accept-Encoding</stringProp>
-            <stringProp name="Header.value">gzip, deflate</stringProp>
-          </elementProp>
-        </collectionProp>
-      </HeaderManager>
-      <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="酒店查询" enabled="false">
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <longProp name="ThreadGroup.start_time">1375525852000</longProp>
-        <longProp name="ThreadGroup.end_time">1375525852000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-      </ThreadGroup>
-      <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="false">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-  &quot;HotelType&quot;:&quot;M&quot;,&#xd;
-  &quot;CheckInDate&quot;:&quot;2015-06-26&quot;,&#xd;
-  &quot;CheckOutDate&quot;:&quot;2015-06-27&quot;,&#xd;
-  &quot;CityID&quot;:2,&#xd;
-  &quot;HotelName&quot;:&quot;&quot;,&#xd;
-  &quot;HotelCount&quot;:1,&#xd;
-  &quot;MapSearchEntity&quot;:&#xd;
-  {&#xd;
-    &quot;DotX&quot;:0,&#xd;
-    &quot;DotY&quot;:0,&#xd;
-    &quot;MaxLat&quot;:0,&#xd;
-    &quot;MaxLng&quot;:0,&#xd;
-    &quot;MinLat&quot;:0,&#xd;
-    &quot;MinLng&quot;:0,&#xd;
-    &quot;Radius&quot;:0&#xd;
-  },&#xd;
-  &quot;Star&quot;:0,&#xd;
-  &quot;HotelList&quot;:&quot;&quot;,&#xd;
-  &quot;HasBreakFast&quot;:false,&#xd;
-  &quot;Culture&quot;:&quot;CN&quot;,&#xd;
-  &quot;IsOversea&quot;:false,&#xd;
-  &quot;OrderByName&quot;:&quot;String&quot;,&#xd;
-  &quot;OrderByType&quot;:&quot;String&quot;,&#xd;
-  &quot;CorpID&quot;:&quot;xiaomi&quot;,&#xd;
-  &quot;UID&quot;:&quot;M00715139&quot;&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat4.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelSearch</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;CorpHotelSearchRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;HotelType&gt;M&lt;/HotelType&gt;&#xd;
-  &lt;CheckInDate&gt;2015-06-26&lt;/CheckInDate&gt;&#xd;
-  &lt;CheckOutDate&gt;2015-06-27&lt;/CheckOutDate&gt;&#xd;
-  &lt;CityID&gt;2&lt;/CityID&gt;&#xd;
-  &lt;HotelName&gt;&lt;/HotelName&gt;&#xd;
-  &lt;HotelCount&gt;1&lt;/HotelCount&gt;&#xd;
-  &lt;MapSearchEntity&gt;&#xd;
-    &lt;DotX&gt;0&lt;/DotX&gt;&#xd;
-    &lt;DotY&gt;0&lt;/DotY&gt;&#xd;
-    &lt;MaxLat&gt;0&lt;/MaxLat&gt;&#xd;
-    &lt;MaxLng&gt;0&lt;/MaxLng&gt;&#xd;
-    &lt;MinLat&gt;0&lt;/MinLat&gt;&#xd;
-    &lt;MinLng&gt;0&lt;/MinLng&gt;&#xd;
-    &lt;Radius&gt;0&lt;/Radius&gt;&#xd;
-  &lt;/MapSearchEntity&gt;&#xd;
-  &lt;Star&gt;0&lt;/Star&gt;&#xd;
-  &lt;HotelList&gt;&lt;/HotelList&gt;&#xd;
-  &lt;HasBreakFast&gt;false&lt;/HasBreakFast&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-  &lt;IsOversea&gt;false&lt;/IsOversea&gt;&#xd;
-  &lt;OrderByName&gt;String&lt;/OrderByName&gt;&#xd;
-  &lt;OrderByType&gt;String&lt;/OrderByType&gt;&#xd;
-  &lt;CorpID&gt;xiaomi&lt;/CorpID&gt;&#xd;
-  &lt;UID&gt;hoteltest&lt;/UID&gt;&#xd;
-&lt;/CorpHotelSearchRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelSearch</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <objProp>
-            <name></name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="酒店详情查询" enabled="false">
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <longProp name="ThreadGroup.start_time">1375525852000</longProp>
-        <longProp name="ThreadGroup.end_time">1375525852000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-      </ThreadGroup>
-      <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="false">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-  &quot;HotelType&quot;:&quot;M&quot;,&#xd;
-  &quot;CheckInDate&quot;:&quot;2015-06-26&quot;,&#xd;
-  &quot;CheckOutDate&quot;:&quot;2015-06-27&quot;,&#xd;
-  &quot;CityID&quot;:2,&#xd;
-  &quot;HotelName&quot;:&quot;&quot;,&#xd;
-  &quot;HotelCount&quot;:1,&#xd;
-  &quot;MapSearchEntity&quot;:&#xd;
-  {&#xd;
-    &quot;DotX&quot;:0,&#xd;
-    &quot;DotY&quot;:0,&#xd;
-    &quot;MaxLat&quot;:0,&#xd;
-    &quot;MaxLng&quot;:0,&#xd;
-    &quot;MinLat&quot;:0,&#xd;
-    &quot;MinLng&quot;:0,&#xd;
-    &quot;Radius&quot;:0&#xd;
-  },&#xd;
-  &quot;Star&quot;:0,&#xd;
-  &quot;HotelList&quot;:&quot;&quot;,&#xd;
-  &quot;HasBreakFast&quot;:false,&#xd;
-  &quot;Culture&quot;:&quot;CN&quot;,&#xd;
-  &quot;IsOversea&quot;:false,&#xd;
-  &quot;OrderByName&quot;:&quot;String&quot;,&#xd;
-  &quot;OrderByType&quot;:&quot;String&quot;,&#xd;
-  &quot;CorpID&quot;:&quot;xiaomi&quot;,&#xd;
-  &quot;UID&quot;:&quot;M00715139&quot;&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat4.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelSearch</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;CorpHotelInfoRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;HotelID&gt;397154&lt;/HotelID&gt;&#xd;
-  &lt;RoomID&gt;0&lt;/RoomID&gt;&#xd;
-  &lt;CheckInDate&gt;2015-06-28&lt;/CheckInDate&gt;&#xd;
-  &lt;CheckOutDate&gt;2015-06-29&lt;/CheckOutDate&gt;&#xd;
-  &lt;CorpID&gt;T888888&lt;/CorpID&gt;&#xd;
-  &lt;UID&gt;M00715139&lt;/UID&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-  &lt;CityID&gt;2&lt;/CityID&gt;&#xd;
-&lt;HotelType&gt;M&lt;/HotelType&gt;&#xd;
-&lt;/CorpHotelInfoRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelInfo</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <objProp>
-            <name></name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="下单" enabled="false">
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <longProp name="ThreadGroup.start_time">1375525852000</longProp>
-        <longProp name="ThreadGroup.end_time">1375525852000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-      </ThreadGroup>
-      <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="false">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-  &quot;HotelType&quot;:&quot;M&quot;,&#xd;
-  &quot;CheckInDate&quot;:&quot;2015-06-26&quot;,&#xd;
-  &quot;CheckOutDate&quot;:&quot;2015-06-27&quot;,&#xd;
-  &quot;CityID&quot;:2,&#xd;
-  &quot;HotelName&quot;:&quot;&quot;,&#xd;
-  &quot;HotelCount&quot;:1,&#xd;
-  &quot;MapSearchEntity&quot;:&#xd;
-  {&#xd;
-    &quot;DotX&quot;:0,&#xd;
-    &quot;DotY&quot;:0,&#xd;
-    &quot;MaxLat&quot;:0,&#xd;
-    &quot;MaxLng&quot;:0,&#xd;
-    &quot;MinLat&quot;:0,&#xd;
-    &quot;MinLng&quot;:0,&#xd;
-    &quot;Radius&quot;:0&#xd;
-  },&#xd;
-  &quot;Star&quot;:0,&#xd;
-  &quot;HotelList&quot;:&quot;&quot;,&#xd;
-  &quot;HasBreakFast&quot;:false,&#xd;
-  &quot;Culture&quot;:&quot;CN&quot;,&#xd;
-  &quot;IsOversea&quot;:false,&#xd;
-  &quot;OrderByName&quot;:&quot;String&quot;,&#xd;
-  &quot;OrderByType&quot;:&quot;String&quot;,&#xd;
-  &quot;CorpID&quot;:&quot;xiaomi&quot;,&#xd;
-  &quot;UID&quot;:&quot;M00715139&quot;&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat4.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelSearch</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="下单" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;CorpHotelBookRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;CorpID&gt;T888888&lt;/CorpID&gt;&#xd;
-  &lt;UID&gt;M00715139&lt;/UID&gt;&#xd;
-  &lt;SID&gt;876543211&lt;/SID&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-  &lt;PrepayType&gt;CCARD&lt;/PrepayType&gt;&#xd;
-  &lt;BalanceType&gt;PP&lt;/BalanceType&gt;&#xd;
-  &lt;HotelID&gt;637266&lt;/HotelID&gt;&#xd;
-  &lt;RoomID&gt;2054823&lt;/RoomID&gt;&#xd;
-  &lt;CityID&gt;2&lt;/CityID&gt;&#xd;
-  &lt;HotelType&gt;M&lt;/HotelType&gt;&#xd;
-  &lt;StartTime&gt;2015-06-26&lt;/StartTime&gt;&#xd;
-  &lt;EndTime&gt;2015-06-27&lt;/EndTime&gt;&#xd;
-  &lt;Quantity&gt;1&lt;/Quantity&gt;&#xd;
-  &lt;GuestPerson&gt;1&lt;/GuestPerson&gt;&#xd;
-  &lt;IsOversea&gt;false&lt;/IsOversea&gt;&#xd;
-  &lt;ClientList&gt;&#xd;
-    &lt;ClientEntity&gt;&#xd;
-      &lt;Name&gt;karsen&lt;/Name&gt;&#xd;
-    &lt;/ClientEntity&gt;&#xd;
-  &lt;/ClientList&gt;&#xd;
-  &lt;Contactor&gt;&#xd;
-    &lt;Name&gt;karsen&lt;/Name&gt;&#xd;
-    &lt;MobilePhone&gt;15072465131&lt;/MobilePhone&gt;&#xd;
-    &lt;Tel&gt;&lt;/Tel&gt;&#xd;
-    &lt;Fax&gt;&lt;/Fax&gt;&#xd;
-    &lt;Email&gt;&lt;/Email&gt;&#xd;
-  &lt;/Contactor&gt;&#xd;
-  &lt;GuaranteeInfo&gt;&#xd;
-    &lt;GuaranteeType&gt;&lt;/GuaranteeType&gt;&#xd;
-    &lt;GuaranteeContext&gt;&lt;/GuaranteeContext&gt;&#xd;
-    &lt;GuranteeCurrency&gt;&lt;/GuranteeCurrency&gt;&#xd;
-    &lt;DeductType&gt;&lt;/DeductType&gt;&#xd;
-    &lt;GuaranteeAmount&gt;&lt;/GuaranteeAmount&gt;&#xd;
-  &lt;/GuaranteeInfo&gt;&#xd;
-  &lt;PriceInfo&gt;&#xd;
-    &lt;Amount&gt;1000.00&lt;/Amount&gt;&#xd;
-    &lt;CurrencyCode&gt;CNY&lt;/CurrencyCode&gt;&#xd;
-    &lt;Exchange&gt;1.00&lt;/Exchange&gt;&#xd;
-  &lt;/PriceInfo&gt;&#xd;
-  &lt;PaymentInfo&gt;&#xd;
-    &lt;IDType&gt;2&lt;/IDType&gt;&#xd;
-    &lt;IDNumber&gt;5421212452&lt;/IDNumber&gt;&#xd;
-    &lt;CreditCardNumber&gt;4392250000000009&lt;/CreditCardNumber&gt;&#xd;
-    &lt;CardHolderName&gt;张三&lt;/CardHolderName&gt;&#xd;
-    &lt;ExpireDate&gt;1119&lt;/ExpireDate&gt;&#xd;
-    &lt;SeriesCode&gt;521&lt;/SeriesCode&gt;&#xd;
-    &lt;CreditCardType&gt;1&lt;/CreditCardType&gt;&#xd;
-    &lt;CreditCardName&gt;String&lt;/CreditCardName&gt;&#xd;
-    &lt;PaymentWayID&gt;String&lt;/PaymentWayID&gt;&#xd;
-  &lt;/PaymentInfo&gt;&#xd;
-  &lt;OrderRemark&gt;String&lt;/OrderRemark&gt;&#xd;
-&lt;/CorpHotelBookRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelBook</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <objProp>
-            <name></name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="可用信用卡查询" enabled="false">
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <longProp name="ThreadGroup.start_time">1375525852000</longProp>
-        <longProp name="ThreadGroup.end_time">1375525852000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-      </ThreadGroup>
-      <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="false">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-  &quot;HotelType&quot;:&quot;M&quot;,&#xd;
-  &quot;CheckInDate&quot;:&quot;2015-06-26&quot;,&#xd;
-  &quot;CheckOutDate&quot;:&quot;2015-06-27&quot;,&#xd;
-  &quot;CityID&quot;:2,&#xd;
-  &quot;HotelName&quot;:&quot;&quot;,&#xd;
-  &quot;HotelCount&quot;:1,&#xd;
-  &quot;MapSearchEntity&quot;:&#xd;
-  {&#xd;
-    &quot;DotX&quot;:0,&#xd;
-    &quot;DotY&quot;:0,&#xd;
-    &quot;MaxLat&quot;:0,&#xd;
-    &quot;MaxLng&quot;:0,&#xd;
-    &quot;MinLat&quot;:0,&#xd;
-    &quot;MinLng&quot;:0,&#xd;
-    &quot;Radius&quot;:0&#xd;
-  },&#xd;
-  &quot;Star&quot;:0,&#xd;
-  &quot;HotelList&quot;:&quot;&quot;,&#xd;
-  &quot;HasBreakFast&quot;:false,&#xd;
-  &quot;Culture&quot;:&quot;CN&quot;,&#xd;
-  &quot;IsOversea&quot;:false,&#xd;
-  &quot;OrderByName&quot;:&quot;String&quot;,&#xd;
-  &quot;OrderByType&quot;:&quot;String&quot;,&#xd;
-  &quot;CorpID&quot;:&quot;xiaomi&quot;,&#xd;
-  &quot;UID&quot;:&quot;M00715139&quot;&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat4.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelSearch</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="下单" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;GetCreditCardRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;UID&gt;M00715139&lt;/UID&gt;&#xd;
-  &lt;OrderType&gt;Hotel&lt;/OrderType&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-&lt;/GetCreditCardRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/GetCreditCard</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <objProp>
-            <name></name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-      </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="流程" enabled="false">
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
-        </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <longProp name="ThreadGroup.start_time">1435298408000</longProp>
-        <longProp name="ThreadGroup.end_time">1435298408000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
-      </ThreadGroup>
-      <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="酒店查询" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;CorpHotelSearchRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;HotelType&gt;M&lt;/HotelType&gt;&#xd;
-  &lt;CheckInDate&gt;2015-06-26&lt;/CheckInDate&gt;&#xd;
-  &lt;CheckOutDate&gt;2015-06-27&lt;/CheckOutDate&gt;&#xd;
-  &lt;CityID&gt;2&lt;/CityID&gt;&#xd;
-  &lt;HotelName&gt;&lt;/HotelName&gt;&#xd;
-  &lt;HotelCount&gt;1&lt;/HotelCount&gt;&#xd;
-  &lt;MapSearchEntity&gt;&#xd;
-    &lt;DotX&gt;0&lt;/DotX&gt;&#xd;
-    &lt;DotY&gt;0&lt;/DotY&gt;&#xd;
-    &lt;MaxLat&gt;0&lt;/MaxLat&gt;&#xd;
-    &lt;MaxLng&gt;0&lt;/MaxLng&gt;&#xd;
-    &lt;MinLat&gt;0&lt;/MinLat&gt;&#xd;
-    &lt;MinLng&gt;0&lt;/MinLng&gt;&#xd;
-    &lt;Radius&gt;0&lt;/Radius&gt;&#xd;
-  &lt;/MapSearchEntity&gt;&#xd;
-  &lt;Star&gt;0&lt;/Star&gt;&#xd;
-  &lt;HotelList&gt;&lt;/HotelList&gt;&#xd;
-  &lt;HasBreakFast&gt;false&lt;/HasBreakFast&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-  &lt;IsOversea&gt;false&lt;/IsOversea&gt;&#xd;
-  &lt;OrderByName&gt;&lt;/OrderByName&gt;&#xd;
-  &lt;OrderByType&gt;&lt;/OrderByType&gt;&#xd;
-  &lt;CorpID&gt;xiaomi&lt;/CorpID&gt;&#xd;
-  &lt;UID&gt;hoteltest&lt;/UID&gt;&#xd;
-&lt;/CorpHotelSearchRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelSearch</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="酒店详情查询" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;CorpHotelInfoRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;HotelID&gt;397154&lt;/HotelID&gt;&#xd;
-  &lt;RoomID&gt;0&lt;/RoomID&gt;&#xd;
-  &lt;CheckInDate&gt;2015-06-28&lt;/CheckInDate&gt;&#xd;
-  &lt;CheckOutDate&gt;2015-06-29&lt;/CheckOutDate&gt;&#xd;
-  &lt;CorpID&gt;T888888&lt;/CorpID&gt;&#xd;
-  &lt;UID&gt;M00715139&lt;/UID&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-  &lt;CityID&gt;2&lt;/CityID&gt;&#xd;
-&lt;HotelType&gt;M&lt;/HotelType&gt;&#xd;
-&lt;/CorpHotelInfoRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelInfo</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
-            <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
-import java.util.Map;
-
-import com.ctrip.automation.common.GetValueFromHashMap;
-import com.ctrip.automation.result2map.JsonToHashMapFastJson;
-import com.ctrip.automation.result2map.XmlToHashMap;
-
-HashMap responseMap=new HashMap();
-
-String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
-JsonToHashMapFastJson js=new JsonToHashMapFastJson();
-XmlToHashMap xmlToMap=new XmlToHashMap();
-GetValueFromHashMap getResult=new GetValueFromHashMap();
-System.out.println(sampleResultString);
-sampleResultString=sampleResultString.substring(1,sampleResultString.length());
-responseMap=xmlToMap.dom2Map(sampleResultString);
-
-
-String roomId=getResult.getValue(&quot;RoomID&quot;,responseMap).get(0).toString();
-System.out.println(roomId);
-String payType=getResult.getValue(&quot;PayType&quot;,responseMap).get(0).toString();
-System.out.println(getResult.getValue(&quot;PayType&quot;,responseMap)+&quot;------------&quot;);
-vars.put(&quot;RoomID&quot;,roomId);
-vars.put(&quot;PayType&quot;,payType);</stringProp>
-            <stringProp name="BeanShellAssertion.filename"></stringProp>
-            <stringProp name="BeanShellAssertion.parameters"></stringProp>
-            <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
-          </BeanShellAssertion>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="可用信用卡查询" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;GetCreditCardRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;UID&gt;M00715139&lt;/UID&gt;&#xd;
-  &lt;OrderType&gt;Hotel&lt;/OrderType&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-&lt;/GetCreditCardRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/GetCreditCard</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-            <boolProp name="resetInterpreter">false</boolProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="script"></stringProp>
-          </BeanShellPostProcessor>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="下单" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">&lt;CorpHotelBookRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;&#xd;
-  &lt;CorpID&gt;T888888&lt;/CorpID&gt;&#xd;
-  &lt;UID&gt;M00715139&lt;/UID&gt;&#xd;
-  &lt;SID&gt;876543211&lt;/SID&gt;&#xd;
-  &lt;Culture&gt;CN&lt;/Culture&gt;&#xd;
-  &lt;PrepayType&gt;CCARD&lt;/PrepayType&gt;&#xd;
-  &lt;BalanceType&gt;${PayType}&lt;/BalanceType&gt;&#xd;
-  &lt;HotelID&gt;637266&lt;/HotelID&gt;&#xd;
-  &lt;RoomID&gt;${RoomID}&lt;/RoomID&gt;&#xd;
-  &lt;CityID&gt;2&lt;/CityID&gt;&#xd;
-  &lt;HotelType&gt;M&lt;/HotelType&gt;&#xd;
-  &lt;StartTime&gt;2015-06-28&lt;/StartTime&gt;&#xd;
-  &lt;EndTime&gt;2015-06-29&lt;/EndTime&gt;&#xd;
-  &lt;Quantity&gt;1&lt;/Quantity&gt;&#xd;
-  &lt;GuestPerson&gt;1&lt;/GuestPerson&gt;&#xd;
-  &lt;IsOversea&gt;false&lt;/IsOversea&gt;&#xd;
-  &lt;ClientList&gt;&#xd;
-    &lt;ClientEntity&gt;&#xd;
-      &lt;Name&gt;karsen&lt;/Name&gt;&#xd;
-    &lt;/ClientEntity&gt;&#xd;
-  &lt;/ClientList&gt;&#xd;
-  &lt;Contactor&gt;&#xd;
-    &lt;Name&gt;karsen&lt;/Name&gt;&#xd;
-    &lt;MobilePhone&gt;15072465131&lt;/MobilePhone&gt;&#xd;
-    &lt;Tel&gt;&lt;/Tel&gt;&#xd;
-    &lt;Fax&gt;&lt;/Fax&gt;&#xd;
-    &lt;Email&gt;&lt;/Email&gt;&#xd;
-  &lt;/Contactor&gt;&#xd;
-  &lt;GuaranteeInfo&gt;&#xd;
-    &lt;GuaranteeType&gt;&lt;/GuaranteeType&gt;&#xd;
-    &lt;GuaranteeContext&gt;&lt;/GuaranteeContext&gt;&#xd;
-    &lt;GuranteeCurrency&gt;&lt;/GuranteeCurrency&gt;&#xd;
-    &lt;DeductType&gt;&lt;/DeductType&gt;&#xd;
-    &lt;GuaranteeAmount&gt;&lt;/GuaranteeAmount&gt;&#xd;
-  &lt;/GuaranteeInfo&gt;&#xd;
-  &lt;PriceInfo&gt;&#xd;
-    &lt;Amount&gt;1000.00&lt;/Amount&gt;&#xd;
-    &lt;CurrencyCode&gt;CNY&lt;/CurrencyCode&gt;&#xd;
-    &lt;Exchange&gt;1.00&lt;/Exchange&gt;&#xd;
-  &lt;/PriceInfo&gt;&#xd;
-  &lt;PaymentInfo&gt;&#xd;
-    &lt;IDType&gt;2&lt;/IDType&gt;&#xd;
-    &lt;IDNumber&gt;5421212452&lt;/IDNumber&gt;&#xd;
-    &lt;CreditCardNumber&gt;4392250000000009&lt;/CreditCardNumber&gt;&#xd;
-    &lt;CardHolderName&gt;张三&lt;/CardHolderName&gt;&#xd;
-    &lt;ExpireDate&gt;1119&lt;/ExpireDate&gt;&#xd;
-    &lt;SeriesCode&gt;521&lt;/SeriesCode&gt;&#xd;
-    &lt;CreditCardType&gt;1&lt;/CreditCardType&gt;&#xd;
-    &lt;CreditCardName&gt;String&lt;/CreditCardName&gt;&#xd;
-    &lt;PaymentWayID&gt;String&lt;/PaymentWayID&gt;&#xd;
-  &lt;/PaymentInfo&gt;&#xd;
-  &lt;OrderRemark&gt;String&lt;/OrderRemark&gt;&#xd;
-&lt;/CorpHotelBookRequest&gt;</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">corpws.fat11.qa.nt.ctripcorp.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/Corp-Booking-PrepareWS/CorpHotelBook</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
-        <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
-          <boolProp name="displayJMeterProperties">false</boolProp>
-          <boolProp name="displayJMeterVariables">true</boolProp>
-          <boolProp name="displaySamplerProperties">true</boolProp>
-          <boolProp name="displaySystemProperties">false</boolProp>
-        </DebugPostProcessor>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-      </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="流程" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
@@ -1146,21 +74,23 @@ import com.ctrip.automation.result2map.XmlToHashMap;
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
-JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+sampleResultString=sampleResultString.substring(1,sampleResultString.length());
 XmlToHashMap xmlToMap=new XmlToHashMap();
 GetValueFromHashMap getResult=new GetValueFromHashMap();
-System.out.println(sampleResultString);
-responseMap=xmlToMap.dom2Map(sampleResultString);
 
-int i=getResult.getValue(&quot;RoomID&quot;,responseMap).get(4).size();
+int i=getResult.getValue(&quot;RoomID&quot;,responseMap).size();
+if(i&gt;0)
+{
 int x=(int)(Math.random()*i);
+System.out.println(x);
 int roomIndex=x;
 int index=x/2;
 String roomId=getResult.getValue(&quot;RoomID&quot;,responseMap).get(roomIndex).toString();
 System.out.println(roomId);
 String payType=getResult.getValue(&quot;PayType&quot;,responseMap).get(index).toString();
 vars.put(&quot;RoomID&quot;,roomId);
-vars.put(&quot;PayType&quot;,payType);</stringProp>
+vars.put(&quot;PayType&quot;,payType);
+}</stringProp>
             <stringProp name="BeanShellAssertion.filename"></stringProp>
             <stringProp name="BeanShellAssertion.parameters"></stringProp>
             <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -1183,7 +113,7 @@ vars.put(&quot;PayType&quot;,payType);</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
         </SoapSampler>
         <hashTree/>
-        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="酒店详情查询" enabled="true">
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="酒店详情查询" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -1223,12 +153,14 @@ System.out.println(sampleResultString);
 sampleResultString=sampleResultString.substring(1,sampleResultString.length());
 responseMap=xmlToMap.dom2Map(sampleResultString);
 
-
+if()
+{
 String roomId=getResult.getValue(&quot;RoomID&quot;,responseMap).get(4).toString();
 System.out.println(roomId);
 String payType=getResult.getValue(&quot;PayType&quot;,responseMap).get(2).toString();
 vars.put(&quot;RoomID&quot;,roomId);
-vars.put(&quot;PayType&quot;,payType);</stringProp>
+vars.put(&quot;PayType&quot;,payType);
+}</stringProp>
             <stringProp name="BeanShellAssertion.filename"></stringProp>
             <stringProp name="BeanShellAssertion.parameters"></stringProp>
             <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -1279,22 +211,24 @@ System.out.println(sampleResultString);
 sampleResultString=sampleResultString.substring(1,sampleResultString.length());
 responseMap=xmlToMap.dom2Map(sampleResultString);
 
+System.out.println(getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap).isEmpty() ? false : getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap));
+boolean isGuranteeNeeded=getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap).isEmpty() ? false : getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap);
 
-boolean isGuranteeNeeded=getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap).toString();
-if(isGuranteeNeeded==true)
+if(isGuranteeNeeded)
 {
 String guaranteeType=&quot;C&quot;;
 String guaranteeContext=&quot;15072465131&quot;;
 String guranteeCurrency=getResult.getValue(&quot;GuranteeCurrency&quot;,responseMap).toString();
 String deductType=getResult.getValue(&quot;DeductType&quot;,responseMap).toString();
 String guaranteeAmount=getResult.getValue(&quot;GuranteeAmount&quot;,responseMap).toString();
-}
+
 
 vars.put(&quot;GuaranteeType&quot;,guaranteeType);
 vars.put(&quot;GuaranteeContext&quot;,guaranteeContext);
 vars.put(&quot;GuranteeCurrency&quot;,guranteeCurrency);
 vars.put(&quot;DeductType&quot;,deductType);
-vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);</stringProp>
+vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);
+}</stringProp>
             <stringProp name="BeanShellAssertion.filename"></stringProp>
             <stringProp name="BeanShellAssertion.parameters"></stringProp>
             <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -1372,6 +306,39 @@ vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);</stringProp>
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugPostProcessor>
         <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename">..\results\Testing.xml</stringProp>
+        </ResultCollector>
+        <hashTree/>
         <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
           <collectionProp name="Arguments.arguments">
             <elementProp name="CheckInDate" elementType="Argument">
@@ -1426,39 +393,6 @@ vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);</stringProp>
             </elementProp>
           </collectionProp>
         </Arguments>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>false</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
         <hashTree/>
       </hashTree>
     </hashTree>
