@@ -1,12 +1,12 @@
-2015/05/01 14:54:30 INFO  - jmeter.util.JMeterUtils: Setting Locale to zh_CN 
-2015/05/01 14:54:30 INFO  - jmeter.JMeter: Loading user properties from: E:\SVN\CtripAutomation-Jmeter-Project\bin\user.properties 
-2015/05/01 14:54:30 INFO  - jmeter.JMeter: Loading system properties from: E:\SVN\CtripAutomation-Jmeter-Project\bin\system.properties 
-2015/05/01 14:54:30 FATAL - jmeter.JMeter: An error occurred:  java.lang.IllegalArgumentException: Unknown arg: E:\SVN\CtripAutomation-Jmeter-Project\jmeter\Demo-001-GetData.jmx
-	at org.apache.jmeter.JMeter.initializeProperties(JMeter.java:602)
-	at org.apache.jmeter.JMeter.start(JMeter.java:294)
+2015/05/23 17:53:10 INFO  - jmeter.util.JMeterUtils: Setting Locale to zh_CN 
+2015/05/23 17:53:10 INFO  - jmeter.JMeter: Loading user properties from: E:\SVN\CtripAutomation-Jmeter-Project\bin\user.properties 
+2015/05/23 17:53:10 INFO  - jmeter.JMeter: Loading system properties from: E:\SVN\CtripAutomation-Jmeter-Project\bin\system.properties 
+2015/05/23 17:53:10 FATAL - jmeter.JMeter: An error occurred:  java.lang.IllegalArgumentException: Unknown arg: E:\SVN\CtripAutomation-Jmeter-Project\jmeter\Demo-001-GetData.jmx
+	at org.apache.jmeter.JMeter.initializeProperties(JMeter.java:607)
+	at org.apache.jmeter.JMeter.start(JMeter.java:299)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.jmeter.NewDriver.main(NewDriver.java:259)
+	at org.apache.jmeter.NewDriver.main(NewDriver.java:264)
 

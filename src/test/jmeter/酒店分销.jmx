@@ -54,6 +54,7 @@
   &lt;IsOversea&gt;false&lt;/IsOversea&gt;
   &lt;OrderByName&gt;&lt;/OrderByName&gt;
   &lt;OrderByType&gt;&lt;/OrderByType&gt;
+ &lt;BasicRoomTypeCountPerHotel&gt;-1&lt;/BasicRoomTypeCountPerHotel&gt;
   &lt;CorpID&gt;T888888&lt;/CorpID&gt;
   &lt;UID&gt;M00715139&lt;/UID&gt;
 &lt;/CorpHotelSearchRequest&gt;</stringProp>
@@ -72,13 +73,13 @@ import com.ctrip.automation.result2map.JsonToHashMapFastJson;
 import com.ctrip.automation.result2map.XmlToHashMap;
 
 HashMap responseMap=new HashMap();
-
 String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
 sampleResultString=sampleResultString.substring(1,sampleResultString.length());
 XmlToHashMap xmlToMap=new XmlToHashMap();
 GetValueFromHashMap getResult=new GetValueFromHashMap();
-
+responseMap=xmlToMap.dom2Map(sampleResultString);
 int i=getResult.getValue(&quot;RoomID&quot;,responseMap).size();
+System.out.println(getResult.getValue(&quot;RoomID&quot;,responseMap));
 if(i&gt;0)
 {
 int x=(int)(Math.random()*i);
@@ -86,9 +87,10 @@ System.out.println(x);
 int roomIndex=x;
 int index=x/2;
 String roomId=getResult.getValue(&quot;RoomID&quot;,responseMap).get(roomIndex).toString();
-System.out.println(roomId);
+String hotelId=getResult.getValue(&quot;HotelID&quot;,responseMap).get(roomIndex).toString();
 String payType=getResult.getValue(&quot;PayType&quot;,responseMap).get(index).toString();
 vars.put(&quot;RoomID&quot;,roomId);
+vars.put(&quot;HotelID&quot;,hotelId);
 vars.put(&quot;PayType&quot;,payType);
 }</stringProp>
             <stringProp name="BeanShellAssertion.filename"></stringProp>
@@ -113,14 +115,14 @@ vars.put(&quot;PayType&quot;,payType);
           <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
         </SoapSampler>
         <hashTree/>
-        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="酒店详情查询" enabled="false">
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="酒店详情查询" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="SoapSampler.URL_DATA">http://corpws.fat11.qa.nt.ctripcorp.com/Corp-Booking-PrepareWS/CorpHotelInfo</stringProp>
           <stringProp name="HTTPSamper.xml_data">&lt;CorpHotelInfoRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;
-  &lt;HotelID&gt;397154&lt;/HotelID&gt;
-  &lt;RoomID&gt;0&lt;/RoomID&gt;
+  &lt;HotelID&gt;${HotelID}&lt;/HotelID&gt;
+  &lt;RoomID&gt;${RoomID}&lt;/RoomID&gt;
   &lt;CheckInDate&gt;${CheckInDate}&lt;/CheckInDate&gt;
   &lt;CheckOutDate&gt;${CheckOutDate}&lt;/CheckOutDate&gt;
   &lt;CorpID&gt;T888888&lt;/CorpID&gt;
@@ -143,24 +145,14 @@ import com.ctrip.automation.common.GetValueFromHashMap;
 import com.ctrip.automation.result2map.JsonToHashMapFastJson;
 import com.ctrip.automation.result2map.XmlToHashMap;
 
-HashMap responseMap=new HashMap();
-
-String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
-JsonToHashMapFastJson js=new JsonToHashMapFastJson();
-XmlToHashMap xmlToMap=new XmlToHashMap();
-GetValueFromHashMap getResult=new GetValueFromHashMap();
-System.out.println(sampleResultString);
-sampleResultString=sampleResultString.substring(1,sampleResultString.length());
-responseMap=xmlToMap.dom2Map(sampleResultString);
-
-if()
-{
-String roomId=getResult.getValue(&quot;RoomID&quot;,responseMap).get(4).toString();
-System.out.println(roomId);
-String payType=getResult.getValue(&quot;PayType&quot;,responseMap).get(2).toString();
-vars.put(&quot;RoomID&quot;,roomId);
-vars.put(&quot;PayType&quot;,payType);
-}</stringProp>
+//HashMap responseMap=new HashMap();
+//String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
+//JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+//XmlToHashMap xmlToMap=new XmlToHashMap();
+//GetValueFromHashMap getResult=new GetValueFromHashMap();
+//sampleResultString=sampleResultString.substring(1,sampleResultString.length());
+//responseMap=xmlToMap.dom2Map(sampleResultString);
+</stringProp>
             <stringProp name="BeanShellAssertion.filename"></stringProp>
             <stringProp name="BeanShellAssertion.parameters"></stringProp>
             <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -174,16 +166,16 @@ vars.put(&quot;PayType&quot;,payType);
           <stringProp name="SoapSampler.URL_DATA">http://corpws.fat11.qa.nt.ctripcorp.com/Corp-Booking-PrepareWS/CorpHotelCheckBookAvail</stringProp>
           <stringProp name="HTTPSamper.xml_data">&lt;CorpHotelCheckBookAvailRequest xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://soa.ctrip.com/corp/Booking/PrepareWS/v1&quot;&gt;
   &lt;CorpID&gt;T888888&lt;/CorpID&gt;
-  &lt;UID&gt;m00715139&lt;/UID&gt;
+  &lt;UID&gt;M00715139&lt;/UID&gt;
   &lt;Culture&gt;${Culture}&lt;/Culture&gt;
   &lt;BalanceType&gt;${PayType}&lt;/BalanceType&gt;
-  &lt;HotelID&gt;637266&lt;/HotelID&gt;
+  &lt;HotelID&gt;${HotelID}&lt;/HotelID&gt;
   &lt;RoomID&gt;${RoomID}&lt;/RoomID&gt;
   &lt;CityID&gt;${CityID}&lt;/CityID&gt;
   &lt;HotelType&gt;${HotelType}&lt;/HotelType&gt;
-  &lt;StartTime&gt;${CheckInType}&lt;/StartTime&gt;
-  &lt;EndTime&gt;${CheckOutType}&lt;/EndTime&gt;
-  &lt;Quantity&gt;1&lt;/Quantity&gt;
+  &lt;StartTime&gt;${CheckInDate}&lt;/StartTime&gt;
+  &lt;EndTime&gt;${CheckOutDate}&lt;/EndTime&gt;
+  &lt;Quantity&gt;${Quantity}&lt;/Quantity&gt;
   &lt;GuestPerson&gt;1&lt;/GuestPerson&gt;
   &lt;IsOversea&gt;false&lt;/IsOversea&gt;
 &lt;/CorpHotelCheckBookAvailRequest&gt;</stringProp>
@@ -211,16 +203,16 @@ System.out.println(sampleResultString);
 sampleResultString=sampleResultString.substring(1,sampleResultString.length());
 responseMap=xmlToMap.dom2Map(sampleResultString);
 
-System.out.println(getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap).isEmpty() ? false : getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap));
-boolean isGuranteeNeeded=getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap).isEmpty() ? false : getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap);
 
+boolean isGuranteeNeeded=getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap).isEmpty() ? false : getResult.getValue(&quot;isGuranteeNeeded&quot;,responseMap).get(0);
+String amountAll=getResult.getValue(&quot;AmountAll&quot;,responseMap).get(0).toString();
 if(isGuranteeNeeded)
 {
 String guaranteeType=&quot;C&quot;;
 String guaranteeContext=&quot;15072465131&quot;;
-String guranteeCurrency=getResult.getValue(&quot;GuranteeCurrency&quot;,responseMap).toString();
-String deductType=getResult.getValue(&quot;DeductType&quot;,responseMap).toString();
-String guaranteeAmount=getResult.getValue(&quot;GuranteeAmount&quot;,responseMap).toString();
+String guranteeCurrency=getResult.getValue(&quot;GuranteeCurrency&quot;,responseMap).get(0).toString();
+String deductType=getResult.getValue(&quot;DeductType&quot;,responseMap).get(0).toString();
+String guaranteeAmount=getResult.getValue(&quot;GuranteeAmount&quot;,responseMap).get(0).toString();
 
 
 vars.put(&quot;GuaranteeType&quot;,guaranteeType);
@@ -228,7 +220,8 @@ vars.put(&quot;GuaranteeContext&quot;,guaranteeContext);
 vars.put(&quot;GuranteeCurrency&quot;,guranteeCurrency);
 vars.put(&quot;DeductType&quot;,deductType);
 vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);
-}</stringProp>
+}
+vars.put(&quot;AmountAll&quot;,amountAll);</stringProp>
             <stringProp name="BeanShellAssertion.filename"></stringProp>
             <stringProp name="BeanShellAssertion.parameters"></stringProp>
             <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -247,13 +240,13 @@ vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);
   &lt;Culture&gt;${Culture}&lt;/Culture&gt;
   &lt;PrepayType&gt;ACCNT&lt;/PrepayType&gt;
   &lt;BalanceType&gt;${PayType}&lt;/BalanceType&gt;
-  &lt;HotelID&gt;637266&lt;/HotelID&gt;
+  &lt;HotelID&gt;${HotelID}&lt;/HotelID&gt;
   &lt;RoomID&gt;${RoomID}&lt;/RoomID&gt;
   &lt;CityID&gt;${CityID}&lt;/CityID&gt;
   &lt;HotelType&gt;${HotelType}&lt;/HotelType&gt;
   &lt;StartTime&gt;${CheckInDate}&lt;/StartTime&gt;
   &lt;EndTime&gt;${CheckOutDate}&lt;/EndTime&gt;
-  &lt;Quantity&gt;1&lt;/Quantity&gt;
+  &lt;Quantity&gt;${Quantity}&lt;/Quantity&gt;
   &lt;GuestPerson&gt;1&lt;/GuestPerson&gt;
   &lt;IsOversea&gt;false&lt;/IsOversea&gt;
   &lt;ClientList&gt;
@@ -276,7 +269,7 @@ vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);
     &lt;GuaranteeAmount&gt;${GuaranteeAmount}&lt;/GuaranteeAmount&gt;
   &lt;/GuaranteeInfo&gt;
   &lt;PriceInfo&gt;
-    &lt;Amount&gt;1000.00&lt;/Amount&gt;
+    &lt;Amount&gt;${AmountAll}&lt;/Amount&gt;
     &lt;CurrencyCode&gt;RMB&lt;/CurrencyCode&gt;
     &lt;Exchange&gt;1.00&lt;/Exchange&gt;
   &lt;/PriceInfo&gt;
@@ -287,9 +280,9 @@ vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);
     &lt;CardHolderName&gt;张三&lt;/CardHolderName&gt;
     &lt;ExpireDate&gt;1119&lt;/ExpireDate&gt;
     &lt;SeriesCode&gt;521&lt;/SeriesCode&gt;
-    &lt;CreditCardType&gt;1&lt;/CreditCardType&gt;
-    &lt;CreditCardName&gt;String&lt;/CreditCardName&gt;
-    &lt;PaymentWayID&gt;String&lt;/PaymentWayID&gt;
+    &lt;CreditCardType&gt;11&lt;/CreditCardType&gt;
+    &lt;CreditCardName&gt;karsen&lt;/CreditCardName&gt;
+    &lt;PaymentWayID&gt;CC_CMB&lt;/PaymentWayID&gt;
   &lt;/PaymentInfo&gt;
   &lt;OrderRemark&gt;String&lt;/OrderRemark&gt;
 &lt;/CorpHotelBookRequest&gt;</stringProp>
@@ -343,12 +336,12 @@ vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);
           <collectionProp name="Arguments.arguments">
             <elementProp name="CheckInDate" elementType="Argument">
               <stringProp name="Argument.name">CheckInDate</stringProp>
-              <stringProp name="Argument.value">2015-07-06</stringProp>
+              <stringProp name="Argument.value">2015-07-08</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="CheckOutDate" elementType="Argument">
               <stringProp name="Argument.name">CheckOutDate</stringProp>
-              <stringProp name="Argument.value">2015-07-07</stringProp>
+              <stringProp name="Argument.value">2015-07-09</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="CityID" elementType="Argument">
@@ -389,6 +382,11 @@ vars.put(&quot;GuaranteeAmount&quot;,guaranteeAmount);
             <elementProp name="GuaranteeAmount" elementType="Argument">
               <stringProp name="Argument.name">GuaranteeAmount</stringProp>
               <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="Quantity" elementType="Argument">
+              <stringProp name="Argument.name">Quantity</stringProp>
+              <stringProp name="Argument.value">1</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="2.4" jmeter="2.12-SNAPSHOT.20140707">
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Get-Orders-Data" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -28,12 +28,6 @@
       <hashTree>
         <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
           <collectionProp name="Arguments.arguments">
-            <elementProp name="Environment" elementType="Argument">
-              <stringProp name="Argument.name">Environment</stringProp>
-              <stringProp name="Argument.value">${__P(run.environment,FAT)}</stringProp>
-              <stringProp name="Argument.desc">FAT|UAT|PRO</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
             <elementProp name="flagIndicator" elementType="Argument">
               <stringProp name="Argument.name">flagIndicator</stringProp>
               <stringProp name="Argument.value">false</stringProp>
@@ -66,14 +60,20 @@
             </elementProp>
             <elementProp name="TestName" elementType="Argument">
               <stringProp name="Argument.name">TestName</stringProp>
-              <stringProp name="Argument.value">${_CtripGetScriptName}</stringProp>
+              <stringProp name="Argument.value">获取订单信息(按订单返回数据)</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">测试脚本名称</stringProp>
             </elementProp>
             <elementProp name="TestDataFileName" elementType="Argument">
               <stringProp name="Argument.name">TestDataFileName</stringProp>
-              <stringProp name="Argument.value">${_CtripGetTestDataName}</stringProp>
+              <stringProp name="Argument.value">获取订单信息(按订单返回数据).csv</stringProp>
               <stringProp name="Argument.desc">测试数据文件</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="Environment" elementType="Argument">
+              <stringProp name="Argument.name">Environment</stringProp>
+              <stringProp name="Argument.value">${__P(run.environment,FAT)}</stringProp>
+              <stringProp name="Argument.desc">FAT|UAT|PRO</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -84,15 +84,15 @@
           <stringProp name="checkQuery">Select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="dataSource">FlightDB-${Environment}</stringProp>
-          <stringProp name="dbUrl">jdbc:sqlserver://flightdb.${Environment}.qa.nt.ctripcorp.com:55666;databaseName=master;integratedSecurity=true</stringProp>
+          <stringProp name="dbUrl">jdbc:sqlserver://fltorder.db.${Environment}.qa.nt.ctripcorp.com:55666;databaseName=master</stringProp>
           <stringProp name="driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
-          <stringProp name="password">Cisco1989963</stringProp>
+          <stringProp name="password">corptester@Ctrip.com</stringProp>
           <stringProp name="poolMax">10</stringProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
-          <stringProp name="username">cdzhang</stringProp>
+          <stringProp name="username">uapp_corptester</stringProp>
         </JDBCDataSource>
         <hashTree/>
         <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="HotelDB-连接" enabled="true">
@@ -100,15 +100,15 @@
           <stringProp name="checkQuery">Select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="dataSource">HotelDB-${Environment}</stringProp>
-          <stringProp name="dbUrl">jdbc:sqlserver://hoteldb.${Environment}.qa.nt.ctripcorp.com:55888;databaseName=master;integratedSecurity=true</stringProp>
+          <stringProp name="dbUrl">jdbc:sqlserver://hoteldb.${Environment}.qa.nt.ctripcorp.com:55888;databaseName=master</stringProp>
           <stringProp name="driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
-          <stringProp name="password">Cisco1989963</stringProp>
+          <stringProp name="password">corptester@Ctrip.Com</stringProp>
           <stringProp name="poolMax">10</stringProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
-          <stringProp name="username">cdzhang</stringProp>
+          <stringProp name="username">uapp_corptester</stringProp>
         </JDBCDataSource>
         <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
@@ -235,7 +235,7 @@
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="读入数据文件-业务数据" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding">gb2312</stringProp>
-            <stringProp name="filename">..\\05testData\\${Environment}\\${TestDataFileName}.csv</stringProp>
+            <stringProp name="filename">..\\05testData\\${Environment}\\${TestDataFileName}</stringProp>
             <boolProp name="quotedData">true</boolProp>
             <boolProp name="recycle">true</boolProp>
             <stringProp name="shareMode">shareMode.all</stringProp>
@@ -398,7 +398,7 @@ vars.putObject(&quot;dbResult&quot;,originalListTemp);
               </collectionProp>
             </ModuleController>
             <hashTree/>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器-是否对比结果产生记录" enabled="false">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器-是否对比结果产生记录" enabled="true">
               <stringProp name="IfController.condition">&quot;${SQL}&quot;!=&quot;&quot;</stringProp>
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
@@ -674,6 +674,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -689,7 +690,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <subresults>true</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
-              <xml>true</xml>
+              <xml>false</xml>
               <fieldNames>false</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
@@ -697,9 +698,11 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -732,6 +735,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="用表格察看结果" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -747,7 +751,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <subresults>true</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
-              <xml>true</xml>
+              <xml>false</xml>
               <fieldNames>false</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
@@ -755,9 +759,11 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -790,6 +796,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
+            <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -805,7 +812,7 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <subresults>true</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
-              <xml>true</xml>
+              <xml>false</xml>
               <fieldNames>false</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
@@ -813,9 +820,11 @@ System.out.println(&quot;请问你为何不继续往下走了&quot;);</stringPro
               <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
             </value>
           </objProp>
           <objProp>
+            <name></name>
             <value class="SampleSaveConfiguration">
               <time>true</time>
               <latency>true</latency>
@@ -889,7 +898,7 @@ vars.putObject(&quot;sqlList&quot;,sqlList);
           <stringProp name="LoopController.loops">${sqlNum}</stringProp>
         </LoopController>
         <hashTree>
-          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="false">
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="true">
             <stringProp name="CounterConfig.start">0</stringProp>
             <stringProp name="CounterConfig.end">${sqlNum}-1</stringProp>
             <stringProp name="CounterConfig.incr">1</stringProp>
@@ -1304,18 +1313,21 @@ if(!RespStatus.equals(&quot;${Success}&quot;))
             <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">import java.util.HashMap;
 import com.ctrip.automation.result2map.JsonToHashMapFastJson;
+import com.ctrip.automation.common.GetValueFromHashMap;
 
 
 HashMap responseMap=new HashMap();
 
 String sampleResultString=new String(ResponseData,&quot;UTF-8&quot;);
 JsonToHashMapFastJson js=new JsonToHashMapFastJson();
+GetValueFromHashMap getResult=new GetValueFromHashMap();
 responseMap=js.jsonToHashMap(sampleResultString);
 vars.putObject(&quot;responseMapTemp&quot;,responseMap);
 //String RespCode=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;ErrorCode&quot;).toString();
 //String RespDesc=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Message&quot;).toString();
 //String RespStatus=responseMap.get(&quot;TicketResult&quot;).get(&quot;Status&quot;).get(&quot;Success&quot;).toString();
 String Ticket=responseMap.get(&quot;TicketResult&quot;).get(&quot;Ticket&quot;).toString();
+System.out.println(getResult.getValue(&quot;Ticket&quot;,responseMap));
 vars.put(&quot;Ticket&quot;,Ticket);</stringProp>
               <stringProp name="BeanShellAssertion.filename"></stringProp>
               <stringProp name="BeanShellAssertion.parameters"></stringProp>
